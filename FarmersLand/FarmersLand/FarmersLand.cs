@@ -12,6 +12,12 @@ namespace FarmersLand
             Assert.AreEqual(770, CalculateInitialDimension(770000));
         }
 
+        [TestMethod]
+        public void TestForNegativeValue()
+        {
+            Assert.AreEqual(0, CalculateInitialDimension(-770000));
+        }
+
         double CalculateInitialDimension(double finalDimension)
         {
             double a = 1;
