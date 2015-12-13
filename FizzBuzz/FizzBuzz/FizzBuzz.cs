@@ -26,14 +26,15 @@ namespace FizzBuzz
 
         String CalculateFizzBuzz(int myNumber)
         {
-            if (myNumber % 5 == 0 && myNumber % 3 == 0)
+            bool divisionWithFive = myNumber % 5 == 0;
+            bool divisionWithThree = myNumber % 3 == 0;
+            if (divisionWithFive && divisionWithThree)
                 return "FizzBuzz";
-            if (myNumber % 3 == 0)
+            if (divisionWithThree)
                 return "Fizz";
-            if (myNumber % 5 == 0)
+            if (divisionWithFive)
                 return "Buzz";
-            if ((myNumber % 5 == 0) && (myNumber % 3 == 0))
-                return "FizzBuzz";
+        
             return Convert.ToString(myNumber);
         }
     }
