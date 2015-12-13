@@ -7,14 +7,15 @@ namespace Watermallon
     public class Watermallon
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestForParity()
         {
             Assert.AreEqual("Da", CalculateParityForWatermallon(2));
         }
 
         string CalculateParityForWatermallon(int myNumberParity)
         {
-            if (myNumberParity % 2 == 0)
+            bool testParity = myNumberParity % 2 == 0;
+            if (testParity)
                 return "Da";
             return Convert.ToString(myNumberParity);
         }
