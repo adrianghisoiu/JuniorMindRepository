@@ -16,17 +16,17 @@ namespace FarmersLand
         {
             double a = 1;
             double b = 230;
-            double x1 = 0;
+            double initialDimension = 0;
 
             double equation = a * a + 230 * b - finalDimension;
             double sqrtpart = (b * b) - (4 * a * (-1)*finalDimension);
             if (sqrtpart > 0)
             {
-                x1 = (-b + Math.Sqrt(sqrtpart)) / (a * 2);
+                initialDimension = (-b + Math.Sqrt(sqrtpart)) / (a * 2);
                 // x2 = (-b - Math.Sqrt(sqrtpart)) / (2 * a); we don't need this because gives us a negative value
             }
            
-            return x1;
+            return initialDimension;
         }
     }
 }
