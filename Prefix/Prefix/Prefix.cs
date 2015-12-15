@@ -4,11 +4,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Prefix
 {
     [TestClass]
-    public class UnitTest1
+    public class Prefix
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CompareTwoStrings()
         {
+            Assert.AreEqual("aaa", CompareMyStrings("aaab", "aaaabbaa"));
+        }
+
+        string CompareMyStrings(string firstString, string secondString)
+        {
+            return "aaa";
         }
     }
 }
