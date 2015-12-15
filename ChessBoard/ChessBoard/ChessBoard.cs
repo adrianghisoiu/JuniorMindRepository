@@ -14,7 +14,13 @@ namespace ChessBoard
 
         int CalculateNumberOfSquaresOnAChessBoard(int numberOfSquares)
         {
-            return 204;
+            int totalNumber = 0;
+            for (int i = 0; i <= numberOfSquares; i++)
+                totalNumber += i * i;
+            return totalNumber;
+
+                
+                    
         }
     }
 }
