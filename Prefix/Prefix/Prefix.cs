@@ -11,10 +11,23 @@ namespace Prefix
         {
             Assert.AreEqual("aaa", CompareMyStrings("aaab", "aaaabbaa"));
         }
+        [TestMethod]
+        public void CompareTwoString()
+        {
+            Assert.AreEqual("baBa", CompareMyStrings("baBa", "baBaNOVAC"));
+        }
 
         string CompareMyStrings(string firstString, string secondString)
         {
-            return "aaa";
+            int myPrefixLength = 0;
+
+            for (int i = 0; i < Math.Min(firstString.Length, secondString.Length); i++)
+            {
+                if (firstString[i] != secondString[i])
+                    break;
+                myPrefixLength++;
+            }
+            return firstString.Substring(0, myPrefixLength);
         }
     }
 }
