@@ -12,11 +12,18 @@ namespace RomanNumbers
             Assert.AreEqual("I", ConvertInRomanNumbers(1));
         }
 
+        [TestMethod]
+        public void ConversionOfTwentySix()
+        {
+            Assert.AreEqual("XXVI", ConvertInRomanNumbers(26));
+        }
+
         string ConvertInRomanNumbers(int myNumber)
         {
-            string[] romanNumbers = new string[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+            string[] romanNumbersOne = new string[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+            string[] romanNumberTwo = new string[] { "", "X", "XX", "XXX", "LX", "L", "LX", "LXX", "LXXX", "XC" };
 
-            return romanNumbers[myNumber % 10];
+            return romanNumberTwo[myNumber / 10] + romanNumbersOne[myNumber % 10];
         }
     }
 }
