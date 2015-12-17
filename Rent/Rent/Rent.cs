@@ -4,11 +4,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Rent
 {
     [TestClass]
-    public class UnitTest1
+    public class Rent
     {
         [TestMethod]
-        public void TestMethod1()
+        public void RentPenalityForShortPeriod()
         {
+            Assert.AreEqual(2, CalculateRentPenality(100, 1));
+        }
+
+        double CalculateRentPenality(int rent, int days)
+        {
+            return 0.02 * rent * days;
         }
     }
 }
