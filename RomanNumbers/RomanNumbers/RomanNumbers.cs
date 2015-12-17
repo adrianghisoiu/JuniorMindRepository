@@ -4,11 +4,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace RomanNumbers
 {
     [TestClass]
-    public class UnitTest1
+    public class RomanNumbers
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ConversionOfOne()
         {
+            Assert.AreEqual("I", ConvertInRomanNumbers(1));
+        }
+
+        string ConvertInRomanNumbers(int myNumber)
+        {
+            return "I";
         }
     }
 }
