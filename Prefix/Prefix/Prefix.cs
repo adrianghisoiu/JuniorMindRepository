@@ -11,10 +11,11 @@ namespace Prefix
         {
             Assert.AreEqual("aaa", CompareMyStrings("aaab", "aaaabbaa"));
         }
+
         [TestMethod]
-        public void CompareTwoString()
+        public void CompareTwoStringsWithUpperCase()
         {
-            Assert.AreEqual("baBa", CompareMyStrings("baBa", "baBaNOVAC"));
+            Assert.AreEqual("BAMB", CompareMyStrings("BAMBEEE", "BAMBAN"));
         }
 
         string CompareMyStrings(string firstString, string secondString)
