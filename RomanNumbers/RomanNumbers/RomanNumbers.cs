@@ -14,7 +14,9 @@ namespace RomanNumbers
 
         string ConvertInRomanNumbers(int myNumber)
         {
-            return "I";
+            string[] romanNumbers = new string[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+
+            return romanNumbers[myNumber % 10];
         }
     }
 }
