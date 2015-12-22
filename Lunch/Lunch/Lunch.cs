@@ -9,34 +9,24 @@ namespace Lunch
         [TestMethod]
         public void OurFirstMeet()
         {
-            Assert.AreEqual("You meet your friend again", CalculateIfWeMeetAgain(24));
+            Assert.AreEqual(12, CalculateIfWeMeetAgain(4, 6));
         }
 
-        [TestMethod]
-        public void WeDontMeet()
-        {
-            Assert.AreEqual("You don't meet your friend", CalculateIfWeMeetAgain(20));
-        }
 
-        [TestMethod]
-        public void TestWithWrongCondition()
+        int CalculateIfWeMeetAgain(int hisNumber, int myNumber)
         {
-            Assert.AreEqual("Wrong condition", CalculateIfWeMeetAgain(-20));
-        }
-
-        string CalculateIfWeMeetAgain(int numberOfDays)
-        {
-            bool myCondition = (numberOfDays % 4) == 0 && (numberOfDays % 6 == 0);
-
-            while (numberOfDays > 0)
+            int x = hisNumber;
+            int y = myNumber;
+            //cmmdc
+            while(hisNumber != myNumber )
             {
-                if (myCondition)
-                    return "You meet your friend again";
+                if (hisNumber > myNumber)
+                    hisNumber = hisNumber - myNumber;
                 else
-                    return "You don't meet your friend";
+                    myNumber = myNumber - hisNumber;
             }
-
-            return "Wrong condition";
+            //cmmmc
+            return x * y / hisNumber;
         }
     }
 }
