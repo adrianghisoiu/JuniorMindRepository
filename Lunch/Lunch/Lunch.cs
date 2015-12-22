@@ -9,12 +9,18 @@ namespace Lunch
         [TestMethod]
         public void OurFirstMeet()
         {
-            Assert.AreEqual(24, CalculateIfWeMeetAgain(4, 6));
+            Assert.AreEqual("You meet each other", CalculateIfWeMeetAgain(24));
         }
 
-        int CalculateIfWeMeetAgain(int hisDays, int myDays)
+        string CalculateIfWeMeetAgain(int numberOfDays)
         {
-            return 24;
+            while (numberOfDays > 0)
+            {
+                if ((numberOfDays % 4) == 0 && (numberOfDays % 6 == 0))
+                    return "You meet each other";
+            }
+
+            return Convert.ToString(numberOfDays);
         }
     }
 }
