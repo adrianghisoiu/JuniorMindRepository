@@ -9,7 +9,13 @@ namespace Lunch
         [TestMethod]
         public void OurFirstMeet()
         {
-            Assert.AreEqual("You meet each other", CalculateIfWeMeetAgain(24));
+            Assert.AreEqual("You meet your friend again", CalculateIfWeMeetAgain(24));
+        }
+
+        [TestMethod]
+        public void WeDontMeet()
+        {
+            Assert.AreEqual("You don't meet your friend", CalculateIfWeMeetAgain(20));
         }
 
         string CalculateIfWeMeetAgain(int numberOfDays)
@@ -17,7 +23,9 @@ namespace Lunch
             while (numberOfDays > 0)
             {
                 if ((numberOfDays % 4) == 0 && (numberOfDays % 6 == 0))
-                    return "You meet each other";
+                    return "You meet your friend again";
+                else
+                    return "You don't meet your friend";
             }
 
             return Convert.ToString(numberOfDays);
