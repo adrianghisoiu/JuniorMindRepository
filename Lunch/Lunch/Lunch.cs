@@ -15,18 +15,21 @@ namespace Lunch
 
         int CalculateIfWeMeetAgain(int hisNumber, int myNumber)
         {
-            int x = hisNumber;
-            int y = myNumber;
-            //cmmdc
-            while(hisNumber != myNumber )
+
+            int cmmdc = CalculateBiggestCommonDivisor(hisNumber, myNumber);
+            return hisNumber * myNumber / cmmdc;
+        }
+
+        int CalculateBiggestCommonDivisor(int hisNumber, int myNumber)
+        {
+            while (hisNumber != myNumber)
             {
                 if (hisNumber > myNumber)
                     hisNumber = hisNumber - myNumber;
                 else
                     myNumber = myNumber - hisNumber;
             }
-            //cmmmc
-            return x * y / hisNumber;
+            return hisNumber;
         }
     }
 }
