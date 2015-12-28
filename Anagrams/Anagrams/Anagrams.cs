@@ -21,13 +21,9 @@ namespace Anagrams
         int CalculateNumberOfAnagrams(string myString)
         {
             int total = Factorial(myString.Length);
-
-            string[] myStringArray = new string[myString.Length + 1];
-            for (int i = 0; i < myString.Length; i++)
-            {
-                myStringArray[i] = myString[i].ToString();
-            }
+            string[] myStringArray = ConvertMyString(myString);
             myStringArray[myString.Length] = null;
+
             for (int i = 0; i < myString.Length; i++)
             {
                 int contor = 1;
@@ -41,6 +37,16 @@ namespace Anagrams
             }
 
             return total;
+        }
+
+        private static string[] ConvertMyString(string myString)
+        {
+            string[] myStringArray = new string[myString.Length + 1];
+            for (int i = 0; i < myString.Length; i++)
+            {
+                myStringArray[i] = myString[i].ToString();
+            }
+            return myStringArray;
         }
 
         private static int Factorial(int n)
