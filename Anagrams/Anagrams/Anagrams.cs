@@ -12,6 +12,12 @@ namespace Anagrams
             Assert.AreEqual(6, CalculateNumberOfAnagrams("abab"));
         }
 
+        [TestMethod]
+        public void TestForUpperCase()
+        {
+            Assert.AreEqual(2, CalculateNumberOfAnagrams("AB"));
+        }
+
         int CalculateNumberOfAnagrams(string myString)
         {
             int total = Factorial(myString.Length);
