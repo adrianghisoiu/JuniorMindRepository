@@ -22,7 +22,7 @@ namespace Panagram
         [TestMethod]
         public void TestForASentence()
         {
-            Assert.AreEqual("Yes", SeeIfItsAPanagrams("the quick brown fox jumps over the lazy dog"));
+            Assert.AreEqual("Yes", SeeIfItsAPanagrams("The quick brown fox jumps over the lazy dog"));
         }
 
         [TestMethod]
@@ -33,25 +33,7 @@ namespace Panagram
 
         string SeeIfItsAPanagrams(string myString)
         {
-            string myNewString = GetUniqueCharacters(myString);
-            int contor = 1;
-            bool check = true;
-
-            for (int i = 0; i < (myNewString.Length - 1); i++)
-            {
-                if (myNewString[i] != Convert.ToChar(" "))
-                {
-                    for (int j = i + 1; j < myNewString.Length; j++)
-                        if (myNewString[i] == myNewString[j])
-                            check = false;
-                    if (check == true)
-                        contor++;
-                }
-            }
-            if (contor == 26)
-                return "Yes";
-            else
-                return "No";
+            return GetUniqueCharacters(myString).Length >= 26 ? "Yes" : "No";
         }
 
         string GetUniqueCharacters(string myString)
