@@ -38,15 +38,21 @@ namespace Panagram
             Assert.AreEqual("abc", EliminateNonAlpha("a + b + c"));
         }
 
+        [TestMethod]
+        public void TestForNoPanagramSpecialCharacters()
+        {
+            Assert.AreEqual("No", SeeIfItsAPanagrams("abcdefghijklmnopqrstuvwxy "));
+        }
+
         string SeeIfItsAPanagrams(string myString)
         {
-            return GetUniqueCharacters(myString).Length >= 26 ? "Yes" : "No";
+            return GetUniqueCharacters(EliminateNonAlpha(myString.ToLower())).Length == 26 ? "Yes" : "No";
         }
 
         string EliminateNonAlpha(string myString)
         {
-                Regex reg = new Regex("[^a-zA-Z']");
-                string myNewString = reg.Replace(myString, string.Empty);
+            Regex reg = new Regex("[^a-zA-Z']");
+            string myNewString = reg.Replace(myString, string.Empty);
             return myNewString;
         }
 
