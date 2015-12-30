@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Panagram
 {
@@ -51,9 +52,15 @@ namespace Panagram
 
         string EliminateNonAlpha(string myString)
         {
-            Regex reg = new Regex("[^a-zA-Z']");
-            string myNewString = reg.Replace(myString, string.Empty);
-            return myNewString;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < myString.Length; i++)
+            {
+                if (char.IsLetterOrDigit(myString[i]))
+                {
+                    sb.Append(myString[i]);
+                }
+            }
+            return sb.ToString();
         }
 
         string GetUniqueCharacters(string myString)
