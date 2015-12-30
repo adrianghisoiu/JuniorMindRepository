@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Panagram
 {
@@ -26,14 +27,27 @@ namespace Panagram
         }
 
         [TestMethod]
-        public void TestFoNotAPanagram()
+        public void TestForNotAPanagram()
         {
             Assert.AreEqual("No", SeeIfItsAPanagrams("the quick brown fox"));
+        }
+
+        [TestMethod]
+        public void TestForEliminateNonAlpha()
+        {
+            Assert.AreEqual("abc", EliminateNonAlpha("a + b + c"));
         }
 
         string SeeIfItsAPanagrams(string myString)
         {
             return GetUniqueCharacters(myString).Length >= 26 ? "Yes" : "No";
+        }
+
+        string EliminateNonAlpha(string myString)
+        {
+                Regex reg = new Regex("[^a-zA-Z']");
+                string myNewString = reg.Replace(myString, string.Empty);
+            return myNewString;
         }
 
         string GetUniqueCharacters(string myString)
