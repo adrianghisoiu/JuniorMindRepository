@@ -12,6 +12,12 @@ namespace Cube
             Assert.AreEqual(192, CalculateCubeOfANumber(1));
         }
 
+        [TestMethod]
+        public void TestForAKNumber()
+        {
+            Assert.AreEqual(1692, CalculateCubeOfANumber(7));
+        }
+
         int CalculateCubeOfANumber(int k)
         {
             int[] myNumber = new int[k+1];
