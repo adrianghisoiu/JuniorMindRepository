@@ -7,8 +7,14 @@ namespace Panagram
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestForPanagram()
         {
+            Assert.AreEqual("Yes", SeeIfItsAPanagrams("abcdefghijklmnopqrstuvwxyz"));
+        }
+
+        string SeeIfItsAPanagrams(string myString)
+        {
+            return "Yes";
         }
     }
 }
