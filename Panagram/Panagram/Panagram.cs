@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Panagram
 {
     [TestClass]
-    public class UnitTest1
+    public class Panagram
     {
         [TestMethod]
         public void TestForPanagram()
