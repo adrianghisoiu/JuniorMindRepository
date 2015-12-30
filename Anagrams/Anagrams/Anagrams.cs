@@ -7,47 +7,20 @@ namespace Anagrams
     public class Anagrams
     {
         [TestMethod]
-        public void TestForLowerCase()
+        public void TestForFindingAChar()
         {
-            Assert.AreEqual(6, CalculateNumberOfAnagrams("abab"));
+            Assert.AreEqual(3, CountMatches("abbaacc", 'a'));
         }
 
-        [TestMethod]
-        public void TestForUpperCase()
+        int CountMatches(string myString, char toFind)
         {
-            Assert.AreEqual(2, CalculateNumberOfAnagrams("AB"));
-        }
-
-        int CalculateNumberOfAnagrams(string myString)
-        {
-            int total = Factorial(myString.Length);
-            string[] myStringArray = ConvertMyString(myString);
-            myStringArray[myString.Length] = null;
-
+            int contorChar=0;
             for (int i = 0; i < myString.Length; i++)
-            {
-                int contor = 1;
-                for (int j = i + 1; j <= myString.Length; j++)
-                    if (myStringArray[i] != null && myStringArray[i] == myStringArray[j])
-                    {
-                        contor++;
-                        myStringArray[j] = null;
-                    }
-                total = total / Factorial(contor);
-            }
-
-            return total;
+                if (myString[i] == toFind)
+                    contorChar++;
+            return contorChar;
         }
 
-        private static string[] ConvertMyString(string myString)
-        {
-            string[] myStringArray = new string[myString.Length + 1];
-            for (int i = 0; i < myString.Length; i++)
-            {
-                myStringArray[i] = myString[i].ToString();
-            }
-            return myStringArray;
-        }
 
         private static int Factorial(int n)
         {
