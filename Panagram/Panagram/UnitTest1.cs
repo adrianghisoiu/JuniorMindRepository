@@ -19,17 +19,28 @@ namespace Panagram
             Assert.AreEqual("The quickbrownfxjmpsvtlazydg", GetUniqueCharacters("The quick brown fox jumps over the lazy dog"));
         }
 
+        [TestMethod]
+        public void TestForASentence()
+        {
+            Assert.AreEqual("Yes", SeeIfItsAPanagrams("the quick brown fox jumps over the lazy dog"));
+        }
+
         string SeeIfItsAPanagrams(string myString)
         {
+            string myNewString = GetUniqueCharacters(myString);
             int contor = 1;
             bool check = true;
-            for (int i = 0; i < (myString.Length-1); i++)
+
+            for (int i = 0; i < (myNewString.Length - 1); i++)
             {
-                for (int j = i + 1; j < myString.Length; j++)
-                    if (myString[i] == myString[j])
-                        check = false;
-                if (check == true)
-                    contor++;
+                if (myNewString[i] != Convert.ToChar(" "))
+                {
+                    for (int j = i + 1; j < myNewString.Length; j++)
+                        if (myNewString[i] == myNewString[j])
+                            check = false;
+                    if (check == true)
+                        contor++;
+                }
             }
             if (contor == 26)
                 return "Yes";
