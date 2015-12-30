@@ -25,6 +25,12 @@ namespace Panagram
             Assert.AreEqual("Yes", SeeIfItsAPanagrams("the quick brown fox jumps over the lazy dog"));
         }
 
+        [TestMethod]
+        public void TestFoNotAPanagram()
+        {
+            Assert.AreEqual("No", SeeIfItsAPanagrams("the quick brown fox"));
+        }
+
         string SeeIfItsAPanagrams(string myString)
         {
             string myNewString = GetUniqueCharacters(myString);
