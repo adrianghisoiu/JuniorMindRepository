@@ -14,7 +14,12 @@ namespace Cube
 
         int CalculateCubeOfANumber(int k)
         {
-            return 192;
+            int[] myNumber = new int[k+1];
+            myNumber[0] = 192;
+
+            for (int i = 1; i < k; i++)
+                myNumber[i] = myNumber[i - 1] + 250;
+            return myNumber[k - 1];
         }
     }
 }
