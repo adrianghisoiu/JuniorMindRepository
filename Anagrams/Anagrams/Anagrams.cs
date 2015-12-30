@@ -19,6 +19,12 @@ namespace Anagrams
             Assert.AreEqual("abc", GetUniqueCharacters("abbaacc"));
         }
 
+        [TestMethod]
+        public void TestForNumberOfAnagrams()
+        {
+            Assert.AreEqual(210, CountMyNumberOfAnagrams("abbaacc"));
+        }
+
         int CountMatches(string myString, char toFind)
         {
             int contorChar=0;
@@ -32,6 +38,16 @@ namespace Anagrams
         {
             var myNewString = String.Join("", myString.Distinct());
             return myNewString;
+        }
+
+        int CountMyNumberOfAnagrams(string myString)
+        {
+            int permutationOfLetters = Factorial(myString.Length);
+            int numberOfAnagrams = permutationOfLetters;
+            string myNewString = GetUniqueCharacters(myString);
+            for (int i = 0; i < myNewString.Length; i++)
+                 numberOfAnagrams /= Factorial(CountMatches(myString, myNewString[i]));
+            return numberOfAnagrams;
         }
 
         private static int Factorial(int n)
