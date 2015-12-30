@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Panagram
 {
@@ -10,6 +11,12 @@ namespace Panagram
         public void TestForPanagram()
         {
             Assert.AreEqual("Yes", SeeIfItsAPanagrams("abcdefghijklmnopqrstuvwxyz"));
+        }
+
+        [TestMethod]
+        public void TestForUniqueCharacters()
+        {
+            Assert.AreEqual("The quickbrownfxjmpsvtlazydg", GetUniqueCharacters("The quick brown fox jumps over the lazy dog"));
         }
 
         string SeeIfItsAPanagrams(string myString)
@@ -28,6 +35,12 @@ namespace Panagram
                 return "Yes";
             else
                 return "No";
+        }
+
+        string GetUniqueCharacters(string myString)
+        {
+            var myNewString = String.Join("", myString.Distinct());
+            return myNewString;
         }
     }
 }
