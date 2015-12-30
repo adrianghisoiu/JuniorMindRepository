@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Anagrams
 {
@@ -12,6 +13,12 @@ namespace Anagrams
             Assert.AreEqual(3, CountMatches("abbaacc", 'a'));
         }
 
+        [TestMethod]
+        public void TestForGetUniqueCharacters()
+        {
+            Assert.AreEqual("abc", GetUniqueCharacters("abbaacc"));
+        }
+
         int CountMatches(string myString, char toFind)
         {
             int contorChar=0;
@@ -21,6 +28,11 @@ namespace Anagrams
             return contorChar;
         }
 
+        string GetUniqueCharacters(string myString)
+        {
+            var myNewString = String.Join("", myString.Distinct());
+            return myNewString;
+        }
 
         private static int Factorial(int n)
         {
