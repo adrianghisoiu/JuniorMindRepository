@@ -7,15 +7,21 @@ namespace Excel
     public class Excel
     {
         [TestMethod]
-        public void FirstLetter()
+        public void TestForOneLetter()
         {
             Assert.AreEqual("A", ConvertToObtainMyChar(1));
         }
 
         [TestMethod]
-        public void TwentyEightLetter()
+        public void TestForTwoLetters()
         {
             Assert.AreEqual("AB", ConvertToObtainMyChar(28));
+        }
+
+        [TestMethod]
+        public void TestForThreeLetters()
+        {
+            Assert.AreEqual("AAA", ConvertToObtainMyChar(703));
         }
 
         string ConvertToObtainMyChar(int myNumber)
