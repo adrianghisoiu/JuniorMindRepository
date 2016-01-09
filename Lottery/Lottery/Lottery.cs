@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Lottery
 {
     [TestClass]
-    public class UnitTest1
+    public class Lottery
     {
         [TestMethod]
         public void ThirdCategory()
