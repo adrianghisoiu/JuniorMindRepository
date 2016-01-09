@@ -6,11 +6,11 @@ namespace Lottery
     [TestClass]
     public class UnitTest1
     {
-        /*[TestMethod]
+        [TestMethod]
         public void ThirdCategory()
         {
             Assert.AreEqual(0.000969, CalculatePercentageForWinning(49, 6,4));
-        }*/
+        }
 
         [TestMethod]
         public void TestForCombinationsFunction()
@@ -18,12 +18,13 @@ namespace Lottery
             Assert.AreEqual(15, CalculateCombinations(6, 4));
         }
 
-        /*  double CalculatePercentageForWinning(int totalNumberOfBalls, int numberOfBallsInATicket, int numberOfBallsForWinning )
-          {
-              int remainingBalls = totalNumberOfBalls - numberOfBallsInATicket;
-              int balls = numberOfBallsInATicket - numberOfBallsForWinning;
+        double CalculatePercentageForWinning(int totalNumberOfBalls, int numberOfBallsInATicket, int numberOfBallsForWinning )
+        {
+           int remainingBalls = totalNumberOfBalls - numberOfBallsInATicket;
+           int balls = numberOfBallsInATicket - numberOfBallsForWinning;
+            return Math.Round((CalculateCombinations(numberOfBallsInATicket, numberOfBallsForWinning) * CalculateCombinations(remainingBalls, balls)) / CalculateCombinations(totalNumberOfBalls,numberOfBallsInATicket),6);
 
-          }*/
+        }
 
         double CalculateCombinations(int n, int k)
         {
