@@ -30,6 +30,12 @@ namespace Lottery
             Assert.AreEqual(0.0000000715, CalculatePercentageForWinning(49, 6, 6));
         }
 
+        [TestMethod]
+        public void FirstCategoryFiveFromForty()
+        {
+            Assert.AreEqual(0.0000015, CalculatePercentageForWinning(40, 5, 5));
+        }
+
         double CalculatePercentageForWinning(int totalNumberOfBalls, int numberOfBallsInATicket, int numberOfBallsForWinning)
         {
             int remainingBalls = totalNumberOfBalls - numberOfBallsInATicket;
@@ -39,8 +45,7 @@ namespace Lottery
                 return Math.Round(calculateThePercentage, 6);
             if (numberOfBallsForWinning == 5)
                 return Math.Round(calculateThePercentage, 7);
-            else
-                return Math.Round(calculateThePercentage, 10);
+            return Math.Round(calculateThePercentage, 10);
         }
 
         double CalculateCombinations(int n, int k)
