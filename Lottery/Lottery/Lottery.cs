@@ -9,7 +9,7 @@ namespace Lottery
         [TestMethod]
         public void ThirdCategory()
         {
-            Assert.AreEqual(0.000969, CalculatePercentageForWinning(49, 6, 4));
+            Assert.AreEqual(0.000969, CalculatePercentageForWinning(49, 6, 4), 1e-6);
         }
 
         [TestMethod]
@@ -21,31 +21,27 @@ namespace Lottery
         [TestMethod]
         public void SecondCategory()
         {
-            Assert.AreEqual(0.0000184, CalculatePercentageForWinning(49, 6, 5));
+            Assert.AreEqual(0.0000184, CalculatePercentageForWinning(49, 6, 5), 1e-7);
         }
 
         [TestMethod]
         public void FirstCategory()
         {
-            Assert.AreEqual(0.0000000715, CalculatePercentageForWinning(49, 6, 6));
+            Assert.AreEqual(0.0000000715, CalculatePercentageForWinning(49, 6, 6), 1e-10);
         }
 
         [TestMethod]
         public void FirstCategoryFiveFromForty()
         {
-            Assert.AreEqual(0.0000015, CalculatePercentageForWinning(40, 5, 5));
+            Assert.AreEqual(0.0000015, CalculatePercentageForWinning(40, 5, 5), 1e-7);
         }
 
         double CalculatePercentageForWinning(int totalNumberOfBalls, int numberOfBallsInATicket, int numberOfBallsForWinning)
         {
             int remainingBalls = totalNumberOfBalls - numberOfBallsInATicket;
             int balls = numberOfBallsInATicket - numberOfBallsForWinning;
-            double calculateThePercentage = (CalculateCombinations(numberOfBallsInATicket, numberOfBallsForWinning) * CalculateCombinations(remainingBalls, balls)) / CalculateCombinations(totalNumberOfBalls, numberOfBallsInATicket);
-            if (numberOfBallsForWinning == 4)
-                return Math.Round(calculateThePercentage, 6);
-            if (numberOfBallsForWinning == 5)
-                return Math.Round(calculateThePercentage, 7);
-            return Math.Round(calculateThePercentage, 10);
+            return (CalculateCombinations(numberOfBallsInATicket, numberOfBallsForWinning) * CalculateCombinations(remainingBalls, balls)) / CalculateCombinations(totalNumberOfBalls, numberOfBallsInATicket);
+
         }
 
         double CalculateCombinations(int n, int k)
