@@ -12,12 +12,24 @@ namespace Excel
             Assert.AreEqual("A", ConvertToObtainMyChar(1));
         }
 
+        [TestMethod]
+        public void TwentyEightLetter()
+        {
+            Assert.AreEqual("AB", ConvertToObtainMyChar(28));
+        }
+
         string ConvertToObtainMyChar(int myNumber)
         {
-            char myChar;
-            myNumber--;
-            myChar = (char)('A' + myNumber);
-            return Char.ToString(myChar);
+            string myChar = string.Empty;
+            int modulo;
+            while (myNumber > 0)
+            {
+                myNumber--;
+                modulo = myNumber % 26;
+                myChar = (char)('A' + modulo) + myChar;
+                myNumber /= 26;
+            }
+            return myChar;
         }
     }
 }
