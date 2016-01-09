@@ -14,7 +14,10 @@ namespace Excel
 
         string ConvertToObtainMyChar(int myNumber)
         {
-            return Char.ToString('A');
+            char myChar;
+            myNumber--;
+            myChar = (char)('A' + myNumber);
+            return Char.ToString(myChar);
         }
     }
 }
