@@ -24,6 +24,12 @@ namespace Lottery
             Assert.AreEqual(0.0000184, CalculatePercentageForWinning(49, 6, 5));
         }
 
+        [TestMethod]
+        public void FirstCategory()
+        {
+            Assert.AreEqual(0.0000000715, CalculatePercentageForWinning(49, 6, 6));
+        }
+
         double CalculatePercentageForWinning(int totalNumberOfBalls, int numberOfBallsInATicket, int numberOfBallsForWinning)
         {
             int remainingBalls = totalNumberOfBalls - numberOfBallsInATicket;
@@ -31,8 +37,10 @@ namespace Lottery
             double calculateThePercentage = (CalculateCombinations(numberOfBallsInATicket, numberOfBallsForWinning) * CalculateCombinations(remainingBalls, balls)) / CalculateCombinations(totalNumberOfBalls, numberOfBallsInATicket);
             if (numberOfBallsForWinning == 4)
                 return Math.Round(calculateThePercentage, 6);
+            if (numberOfBallsForWinning == 5)
+                return Math.Round(calculateThePercentage, 7);
             else
-                return Math.Round(calculateThePercentage, 7);    
+                return Math.Round(calculateThePercentage, 10);
         }
 
         double CalculateCombinations(int n, int k)
