@@ -20,6 +20,12 @@ namespace Convertor
             CollectionAssert.AreEqual(new byte[] { 1, 1, 1 }, ConvertToBinary(7));
         }
 
+        [TestMethod]
+        public void TestOperatorNot()
+        {
+            CollectionAssert.AreEqual(new byte[] { 0, 1 }, Not(new byte[] { 1, 0 }));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -37,6 +43,13 @@ namespace Convertor
             }
             Array.Reverse(convertedNumber);
             return convertedNumber;
+        }
+
+        byte[] Not(byte[] numberNot)
+        {
+            for (int i = 0; i < numberNot.Length; i++)
+                numberNot[i] = (numberNot[i] == 0) ? (byte)(1) : (byte)(0);
+            return numberNot;
         }
     }
 }
