@@ -17,6 +17,7 @@ namespace Convertor
         public void TestForConvert()
         {
             CollectionAssert.AreEqual(new byte[] { 1, 0}, ConvertToBinary(2));
+            CollectionAssert.AreEqual(new byte[] { 1, 1, 1 }, ConvertToBinary(7));
         }
 
         byte GetElement(byte[] myByteArray, int position)
