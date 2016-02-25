@@ -26,6 +26,18 @@ namespace Convertor
             CollectionAssert.AreEqual(new byte[] { 0, 1 }, Not(new byte[] { 1, 0 }));
         }
 
+        [TestMethod]
+        public void TestOperatorAnd()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(3 & 6), And(ConvertToBinary(3), ConvertToBinary(6)));
+        }
+
+        [TestMethod]
+        public void TestForCounter()
+        {
+            Assert.AreEqual(3, CountZero(new byte[] { 0, 0, 0, 1, 2 }));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -50,6 +62,25 @@ namespace Convertor
             for (int i = 0; i < numberNot.Length; i++)
                 numberNot[i] = (numberNot[i] == 0) ? (byte)(1) : (byte)(0);
             return numberNot;
+        }
+
+        byte[] And(byte[] firstNumber, byte[] secondNumber)
+        {
+            byte[] numberAnd = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
+            for (int i = 0; i < numberAnd.Length; i++)
+                numberAnd[i] = (byte)(GetElement(firstNumber, i) * GetElement(secondNumber,i));
+            return numberAnd;
+        }
+
+        int CountZero(byte[] number)
+        {
+            int numberOfZero=0;
+            for (int i = 0; i < number.Length; i++)
+                if (number[i] == 0)
+                {
+                    numberOfZero++;
+                }
+            return numberOfZero;
         }
     }
 }
