@@ -70,8 +70,10 @@ namespace Convertor
             byte[] numberAnd = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < numberAnd.Length; i++)
                 numberAnd[i] = (byte)(GetElement(firstNumber, i) * GetElement(secondNumber,i));
-            Array.Reverse(numberAnd);
+
             Array.Resize(ref numberAnd, numberAnd.Length - CountZero(numberAnd));
+            Array.Reverse(numberAnd);
+            
             return numberAnd;
         }
 
