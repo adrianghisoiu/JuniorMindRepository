@@ -36,6 +36,7 @@ namespace Convertor
         public void TestForCounter()
         {
             Assert.AreEqual(3, CountZero(new byte[] { 0, 0, 0, 1, 2 }));
+            Assert.AreEqual(1, CountZero(new byte[] { 0, 1, 0, 0, 2 }));
         }
 
         byte GetElement(byte[] myByteArray, int position)
@@ -69,6 +70,8 @@ namespace Convertor
             byte[] numberAnd = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < numberAnd.Length; i++)
                 numberAnd[i] = (byte)(GetElement(firstNumber, i) * GetElement(secondNumber,i));
+            Array.Reverse(numberAnd);
+            Array.Resize(ref numberAnd, numberAnd.Length - CountZero(numberAnd));
             return numberAnd;
         }
 
@@ -76,10 +79,14 @@ namespace Convertor
         {
             int numberOfZero=0;
             for (int i = 0; i < number.Length; i++)
+            {
                 if (number[i] == 0)
                 {
                     numberOfZero++;
                 }
+                if (number[i + 1] != 0)
+                    break;
+            }
             return numberOfZero;
         }
     }
