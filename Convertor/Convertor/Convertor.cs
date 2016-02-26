@@ -30,6 +30,7 @@ namespace Convertor
         public void TestOperatorAnd()
         {
             CollectionAssert.AreEqual(ConvertToBinary(3 & 6), And(ConvertToBinary(3), ConvertToBinary(6)));
+            CollectionAssert.AreEqual(ConvertToBinary(3 & 96), And(ConvertToBinary(3), ConvertToBinary(96)));
         }
 
         [TestMethod]
@@ -79,17 +80,10 @@ namespace Convertor
 
         int CountZero(byte[] number)
         {
-            int numberOfZero=0;
-            for (int i = 0; i < number.Length; i++)
-            {
-                if (number[i] == 0)
-                {
-                    numberOfZero++;
-                }
-                if (number[i + 1] != 0)
-                    break;
-            }
-            return numberOfZero;
+            int count = 0;
+            while (count < number.Length && number[count] == 0)
+                count++;
+            return count;
         }
     }
 }
