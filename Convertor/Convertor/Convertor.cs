@@ -46,6 +46,12 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(3 | 6), Or(ConvertToBinary(3), ConvertToBinary(6)));
         }
 
+        [TestMethod]
+        public void TestOpertorXor()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(3 ^ 6), Xor(ConvertToBinary(3), ConvertToBinary(6)));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -105,6 +111,22 @@ namespace Convertor
             Array.Reverse(numberOr);
 
             return numberOr;
+        }
+
+        byte[] Xor(byte[] firstNumber, byte[] secondNumber)
+        {
+            byte[] numberXor = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
+            for (int i = 0; i < numberXor.Length; i++)
+                if (GetElement(firstNumber, i) == GetElement(secondNumber, i))
+                    numberXor[i] = 0;
+                else
+                    numberXor[i] = 1;
+                   
+
+            Array.Resize(ref numberXor, numberXor.Length - CountZero(numberXor));
+            Array.Reverse(numberXor);
+
+            return numberXor;
         }
 
     }
