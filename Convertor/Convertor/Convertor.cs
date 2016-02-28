@@ -40,6 +40,12 @@ namespace Convertor
             Assert.AreEqual(1, CountZero(new byte[] { 0, 1, 0, 0, 2 }));
         }
 
+        [TestMethod]
+        public void TestOperatorOr()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(3 | 6), Or(ConvertToBinary(3), ConvertToBinary(6)));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -70,11 +76,11 @@ namespace Convertor
         {
             byte[] numberAnd = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < numberAnd.Length; i++)
-                numberAnd[i] = (byte)(GetElement(firstNumber, i) * GetElement(secondNumber,i));
+                numberAnd[i] = (byte)(GetElement(firstNumber, i) * GetElement(secondNumber, i));
 
             Array.Resize(ref numberAnd, numberAnd.Length - CountZero(numberAnd));
             Array.Reverse(numberAnd);
-            
+
             return numberAnd;
         }
 
@@ -85,5 +91,21 @@ namespace Convertor
                 count++;
             return count;
         }
+
+        byte[] Or(byte[] firstNumber, byte[] secondNumber)
+        {
+            byte[] numberOr = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
+            for (int i = 0; i < numberOr.Length; i++)
+                if (GetElement(firstNumber, i) == 1 || GetElement(secondNumber, i) == 1)
+                    numberOr[i] = 1;
+                else
+                    numberOr[i] = 0;
+
+            Array.Resize(ref numberOr, numberOr.Length - CountZero(numberOr));
+            Array.Reverse(numberOr);
+
+            return numberOr;
+        }
+
     }
 }
