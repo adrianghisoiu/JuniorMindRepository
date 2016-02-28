@@ -52,6 +52,12 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(3 ^ 6), Xor(ConvertToBinary(3), ConvertToBinary(6)));
         }
 
+        [TestMethod]
+        public void TestForRightShiftHand()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(2 >> 1), RightHandShift(new byte[] { 1, 0 }, 1));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -129,5 +135,11 @@ namespace Convertor
             return numberXor;
         }
 
+        byte[] RightHandShift(byte[] number, int position)
+        {
+            Array.Resize(ref number, position);
+
+            return number;
+        }
     }
 }
