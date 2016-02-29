@@ -102,6 +102,9 @@ namespace Convertor
                     case "or":
                         number[i] = OrLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
                         break;
+                    case "xor":
+                        number[i] = XorLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
+                        break;
                 }
 
             Array.Resize(ref number, number.Length - CountZero(number));
@@ -135,14 +138,12 @@ namespace Convertor
 
         byte[] Xor(byte[] firstNumber, byte[] secondNumber)
         {
-            byte[] numberXor = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
-            for (int i = 0; i < numberXor.Length; i++)
-                numberXor[i] = (GetElement(firstNumber, i) == GetElement(secondNumber, i)) ? (byte)0 : (byte)1;
-                 
-            Array.Resize(ref numberXor, numberXor.Length - CountZero(numberXor));
-            Array.Reverse(numberXor);
+            return ExecuteLogicalOperation(firstNumber, secondNumber, "xor");
+        }
 
-            return numberXor;
+        private byte XorLogic(byte first, byte second)
+        {
+            return first == second ? (byte)0 : (byte)1;
         }
 
         byte[] RightHandShift(byte[] number, int position)
