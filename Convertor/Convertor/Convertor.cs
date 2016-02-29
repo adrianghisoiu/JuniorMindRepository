@@ -92,19 +92,22 @@ namespace Convertor
 
         private byte[] ExecuteLogicalOperation(byte[] firstNumber, byte[] secondNumber, string operation)
         {
-            byte[] numberAnd = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
-            for (int i = 0; i < numberAnd.Length; i++)
+            byte[] number = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
+            for (int i = 0; i < number.Length; i++)
                 switch (operation)
                 {
                     case "and":
-                        numberAnd[i] = AndLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
+                        number[i] = AndLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
+                        break;
+                    case "or":
+                        number[i] = OrLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
                         break;
                 }
 
-            Array.Resize(ref numberAnd, numberAnd.Length - CountZero(numberAnd));
-            Array.Reverse(numberAnd);
+            Array.Resize(ref number, number.Length - CountZero(number));
+            Array.Reverse(number);
 
-            return numberAnd;
+            return number;
         }
 
         private byte AndLogic(byte first, byte second)
@@ -122,14 +125,12 @@ namespace Convertor
 
         byte[] Or(byte[] firstNumber, byte[] secondNumber)
         {
-            byte[] numberOr = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
-            for (int i = 0; i < numberOr.Length; i++)
-                numberOr[i] = (GetElement(firstNumber, i) == 1 || GetElement(secondNumber, i) == 1) ? (byte)1 : (byte)0;
+            return ExecuteLogicalOperation(firstNumber, secondNumber, "or");
+        }
 
-            Array.Resize(ref numberOr, numberOr.Length - CountZero(numberOr));
-            Array.Reverse(numberOr);
-
-            return numberOr;
+        private byte OrLogic(byte first, byte second)
+        {
+           return first == 1 || second == 1 ? (byte)1 : (byte)0;
         }
 
         byte[] Xor(byte[] firstNumber, byte[] secondNumber)
