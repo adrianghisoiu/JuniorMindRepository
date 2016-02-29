@@ -53,10 +53,11 @@ namespace Convertor
         }
 
         [TestMethod]
-        public void TestForRightShiftHand()
+        public void TestForRightHandShift()
         {
             CollectionAssert.AreEqual(ConvertToBinary(2 >> 1), RightHandShift(new byte[] { 1, 0 }, 1));
         }
+
 
         byte GetElement(byte[] myByteArray, int position)
         {
@@ -108,10 +109,7 @@ namespace Convertor
         {
             byte[] numberOr = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < numberOr.Length; i++)
-                if (GetElement(firstNumber, i) == 1 || GetElement(secondNumber, i) == 1)
-                    numberOr[i] = 1;
-                else
-                    numberOr[i] = 0;
+                numberOr[i] = (GetElement(firstNumber, i) == 1 || GetElement(secondNumber, i) == 1) ? (byte)1 : (byte)0;
 
             Array.Resize(ref numberOr, numberOr.Length - CountZero(numberOr));
             Array.Reverse(numberOr);
@@ -141,5 +139,6 @@ namespace Convertor
 
             return number;
         }
+
     }
 }
