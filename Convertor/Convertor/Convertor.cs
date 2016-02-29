@@ -87,14 +87,29 @@ namespace Convertor
 
         byte[] And(byte[] firstNumber, byte[] secondNumber)
         {
+            return ExecuteLogicalOperation(firstNumber, secondNumber, "and");
+        }
+
+        private byte[] ExecuteLogicalOperation(byte[] firstNumber, byte[] secondNumber, string operation)
+        {
             byte[] numberAnd = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < numberAnd.Length; i++)
-                numberAnd[i] = (byte)(GetElement(firstNumber, i) * GetElement(secondNumber, i));
+                switch (operation)
+                {
+                    case "and":
+                        numberAnd[i] = AndLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
+                        break;
+                }
 
             Array.Resize(ref numberAnd, numberAnd.Length - CountZero(numberAnd));
             Array.Reverse(numberAnd);
 
             return numberAnd;
+        }
+
+        private byte AndLogic(byte first, byte second)
+        {
+            return (byte)(first*second);
         }
 
         int CountZero(byte[] number)
