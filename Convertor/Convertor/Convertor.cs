@@ -121,12 +121,8 @@ namespace Convertor
         {
             byte[] numberXor = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < numberXor.Length; i++)
-                if (GetElement(firstNumber, i) == GetElement(secondNumber, i))
-                    numberXor[i] = 0;
-                else
-                    numberXor[i] = 1;
-                   
-
+                numberXor[i] = (GetElement(firstNumber, i) == GetElement(secondNumber, i)) ? (byte)0 : (byte)1;
+                 
             Array.Resize(ref numberXor, numberXor.Length - CountZero(numberXor));
             Array.Reverse(numberXor);
 
