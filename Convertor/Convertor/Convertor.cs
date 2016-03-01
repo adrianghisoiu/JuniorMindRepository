@@ -58,6 +58,12 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(2 >> 1), RightHandShift(new byte[] { 1, 0 }, 1));
         }
 
+        [TestMethod]
+        public void TestForLeftHandShift()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(2 << 1), LeftHandShift(new byte[] { 1, 0 }, 1));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -96,7 +102,7 @@ namespace Convertor
             {
                 var a = GetElement(firstNumber, i);
                 var b = GetElement(secondNumber, i);
-               number[i]= ExecuteLogicalOperation(a, b, operation);
+               number[i] = ExecuteLogicalOperation(a, b, operation);
             }
 
             Array.Resize(ref number, number.Length - CountZero(number));
@@ -153,6 +159,13 @@ namespace Convertor
         byte[] RightHandShift(byte[] number, int position)
         {
             Array.Resize(ref number, position);
+
+            return number;
+        }
+
+        byte[] LeftHandShift(byte[] number, int position)
+        {
+            Array.Resize(ref number, number.Length + position);
 
             return number;
         }
