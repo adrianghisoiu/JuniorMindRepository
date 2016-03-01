@@ -9,14 +9,14 @@ namespace Convertor
         [TestMethod]
         public void TestGetElement()
         {
-            Assert.AreEqual(1, GetElement(new byte[] { 3, 2, 1}, 0));
+            Assert.AreEqual(1, GetElement(new byte[] { 3, 2, 1 }, 0));
             Assert.AreEqual(0, GetElement(new byte[] { 3, 2, 1 }, 4));
         }
 
         [TestMethod]
         public void TestForConvert()
         {
-            CollectionAssert.AreEqual(new byte[] { 1, 0}, ConvertToBinary(2));
+            CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConvertToBinary(2));
             CollectionAssert.AreEqual(new byte[] { 1, 1, 1 }, ConvertToBinary(7));
         }
 
@@ -58,7 +58,6 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(2 >> 1), RightHandShift(new byte[] { 1, 0 }, 1));
         }
 
-
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -68,9 +67,9 @@ namespace Convertor
         {
             int i = 0;
             byte[] convertedNumber = new byte[0];
-            while(numberToConvert > 0)
+            while (numberToConvert > 0)
             {
-                Array.Resize(ref convertedNumber, i+1);
+                Array.Resize(ref convertedNumber, i + 1);
                 convertedNumber[i++] = (byte)(numberToConvert % 2);
                 numberToConvert = numberToConvert / 2;
             }
@@ -94,18 +93,11 @@ namespace Convertor
         {
             byte[] number = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < number.Length; i++)
-                switch (operation)
-                {
-                    case "and":
-                        number[i] = AndLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
-                        break;
-                    case "or":
-                        number[i] = OrLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
-                        break;
-                    case "xor":
-                        number[i] = XorLogic(GetElement(firstNumber, i), GetElement(secondNumber, i));
-                        break;
-                }
+            {
+                var a = GetElement(firstNumber, i);
+                var b = GetElement(secondNumber, i);
+               number[i]= ExecuteLogicalOperation(a, b, operation);
+            }
 
             Array.Resize(ref number, number.Length - CountZero(number));
             Array.Reverse(number);
@@ -113,9 +105,21 @@ namespace Convertor
             return number;
         }
 
+        private byte ExecuteLogicalOperation(byte firstNumber, byte secondNumber, string operation)
+        {
+            switch (operation)
+            {
+                case "and":
+                    return AndLogic(firstNumber, secondNumber);
+                case "or":
+                    return OrLogic(firstNumber, secondNumber);
+            }
+              return XorLogic(firstNumber, secondNumber);
+        }
+
         private byte AndLogic(byte first, byte second)
         {
-            return (byte)(first*second);
+            return (byte)(first * second);
         }
 
         int CountZero(byte[] number)
@@ -133,7 +137,7 @@ namespace Convertor
 
         private byte OrLogic(byte first, byte second)
         {
-           return first == 1 || second == 1 ? (byte)1 : (byte)0;
+            return first == 1 || second == 1 ? (byte)1 : (byte)0;
         }
 
         byte[] Xor(byte[] firstNumber, byte[] secondNumber)
