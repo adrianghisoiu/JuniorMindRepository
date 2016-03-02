@@ -64,6 +64,12 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(2 << 1), LeftHandShift(new byte[] { 1, 0 }, 1));
         }
 
+        [TestMethod]
+        public void TestForLessThan()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(5), LessThan(ConvertToBinary(5), ConvertToBinary(7)));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -170,5 +176,15 @@ namespace Convertor
             return number;
         }
 
+        byte[] LessThan(byte[] firstNumer, byte[] secondNumber)
+        {
+            byte[] numberLess = new byte[0];
+            for (int i = Math.Max(firstNumer.Length, secondNumber.Length); i > 0; i--)
+                if (GetElement(firstNumer, i) < GetElement(secondNumber, i))
+                    numberLess = firstNumer;
+                else
+                    numberLess = secondNumber;
+            return numberLess;
+        }
     }
 }
