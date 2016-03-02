@@ -180,10 +180,7 @@ namespace Convertor
         {
             byte[] numberLess = new byte[0];
             for (int i = Math.Max(firstNumer.Length, secondNumber.Length); i > 0; i--)
-                if (GetElement(firstNumer, i) < GetElement(secondNumber, i))
-                    numberLess = firstNumer;
-                else
-                    numberLess = secondNumber;
+                numberLess = (GetElement(firstNumer, i) < GetElement(secondNumber, i)) ? firstNumer : numberLess = secondNumber;
             return numberLess;
         }
     }
