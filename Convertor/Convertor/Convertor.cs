@@ -116,6 +116,7 @@ namespace Convertor
             Assert.AreEqual(true, Equal(ConvertToAnyBase(5), ConvertToAnyBase(5)));
             Assert.AreEqual(false, Equal(ConvertToAnyBase(3), ConvertToAnyBase(5)));
             Assert.AreEqual(false, Equal(ConvertToAnyBase(3, 16), ConvertToAnyBase(5, 16)));
+            Assert.AreEqual(true, Equal(ConvertToAnyBase(8, 16), ConvertToAnyBase(8, 16)));
         }
 
         [TestMethod]
