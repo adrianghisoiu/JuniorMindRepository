@@ -91,6 +91,12 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(6), CalculateMultiplication(ConvertToBinary(3), ConvertToBinary(2)));
         }
 
+        [TestMethod]
+        public void TestForCalculateDivision()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(2), CalculateDivision(ConvertToBinary(6), ConvertToBinary(3)));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -264,6 +270,21 @@ namespace Convertor
             byte[] result = { 0 };
             for (byte[] i = { 0 }; LessThan(i, secondNumber); i = CalculateSum(i, new byte[] { 1 }))
                 result = CalculateSum(result, firstNumber);
+
+            return result;
+        }
+
+        byte[] CalculateDivision(byte[] firstNumber, byte[] secondNumber)
+        {
+            byte[] result = { 0 };
+            int contor =  0 ;
+
+            while (LessThan(new byte[] { 0 }, firstNumber))
+            {
+               firstNumber = CalculateSubstraction(firstNumber, secondNumber);
+                contor++;
+            }
+            result = ConvertToBinary(contor);
 
             return result;
         }
