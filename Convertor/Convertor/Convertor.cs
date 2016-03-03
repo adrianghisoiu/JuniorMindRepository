@@ -327,10 +327,7 @@ namespace Convertor
 
         bool NotEqual(byte[] firstNumber, byte[] secondNumber)
         {
-            if (!Equal(firstNumber, secondNumber))
-                return true;
-            else
-                return false;
+            return (!Equal(firstNumber, secondNumber)) ? true : false;
         }
     }
 }
