@@ -319,10 +319,7 @@ namespace Convertor
 
         bool Equal(byte[] firstNumber, byte[] secondNumber)
         {
-            if (!(LessThan(firstNumber, secondNumber) || LessThan(secondNumber, firstNumber)))
-                return true;
-            else
-                return false;
+            return (!(LessThan(firstNumber, secondNumber) || LessThan(secondNumber, firstNumber))) ? true : false;
         }
 
         bool NotEqual(byte[] firstNumber, byte[] secondNumber)
