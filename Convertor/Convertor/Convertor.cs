@@ -36,8 +36,6 @@ namespace Convertor
         [TestMethod]
         public void TestForCounter()
         {
-            /*Assert.AreEqual(3, CountZero(new byte[] { 0, 0, 0, 1, 2 }));
-            Assert.AreEqual(1, CountZero(new byte[] { 0, 1, 0, 0, 2 }));*/
             Assert.AreEqual(1, CountZero(new byte[] { 1, 0 }));
         }
 
@@ -87,11 +85,11 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(7), CalculateSubstraction(ConvertToBinary(11), ConvertToBinary(4)));
         }
   
-      /*  [TestMethod]
+        [TestMethod]
         public void TestForCalculateMultiplication()
         {
             CollectionAssert.AreEqual(ConvertToBinary(6), CalculateMultiplication(ConvertToBinary(3), ConvertToBinary(2)));
-        }*/
+        }
 
         byte GetElement(byte[] myByteArray, int position)
         {
@@ -129,9 +127,7 @@ namespace Convertor
             byte[] number = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
             for (int i = 0; i < number.Length; i++)
             {
-                var a = GetElement(firstNumber, i);
-                var b = GetElement(secondNumber, i);
-               number[i] = ExecuteLogicalOperation(a, b, operation);
+               number[i] = ExecuteLogicalOperation(GetElement(firstNumber, i), GetElement(secondNumber, i), operation);
             }
 
             Array.Resize(ref number, number.Length - CountZero(number));
@@ -263,16 +259,13 @@ namespace Convertor
             return finalNumber;
         }
 
-       /* byte[] CalculateMultiplication(byte[] firstNumber, byte[] secondNumber)
+       byte[] CalculateMultiplication(byte[] firstNumber, byte[] secondNumber)
         {
             byte[] result = { 0 };
-            for (byte[] i = { 0 }; LessThan(i, secondNumber); CalculateSum(i, new byte[] { 1 }))
-                CalculateSum(result, firstNumber);
-
-            Array.Resize(ref result, result.Length - CountZero(result));
-            Array.Reverse(result);
+            for (byte[] i = { 0 }; LessThan(i, secondNumber); i = CalculateSum(i, new byte[] { 1 }))
+                result = CalculateSum(result, firstNumber);
 
             return result;
-        }*/
+        }
     }
 }
