@@ -311,10 +311,7 @@ namespace Convertor
 
         bool GraterThan(byte[] firstNumber, byte[] secondNumber)
         {
-            if (LessThan(firstNumber, secondNumber))
-                return  false;
-            else
-               return true;
+            return (LessThan(firstNumber, secondNumber)) ? false : true;
         }
 
         bool Equal(byte[] firstNumber, byte[] secondNumber)
