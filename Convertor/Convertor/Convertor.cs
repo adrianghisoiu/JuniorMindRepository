@@ -99,6 +99,7 @@ namespace Convertor
         public void TestForCalculateDivision()
         {
             CollectionAssert.AreEqual(ConvertToAnyBase(2), CalculateDivision(ConvertToAnyBase(6), ConvertToAnyBase(3)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(3, 16), CalculateDivision(ConvertToAnyBase(6, 16), ConvertToAnyBase(2, 16), 16));
         }
 
         [TestMethod]
@@ -315,17 +316,17 @@ namespace Convertor
             return result;
         }
 
-        byte[] CalculateDivision(byte[] firstNumber, byte[] secondNumber)
+        byte[] CalculateDivision(byte[] firstNumber, byte[] secondNumber, int baseNumber = 2)
         {
             byte[] result = { 0 };
             int contor =  0 ;
 
             while (LessThan(new byte[] { 0 }, firstNumber))
             {
-               firstNumber = CalculateSubstraction(firstNumber, secondNumber);
+               firstNumber = CalculateSubstraction(firstNumber, secondNumber, baseNumber);
                 contor++;
             }
-            result = ConvertToAnyBase(contor);
+            result = ConvertToAnyBase(contor, baseNumber);
 
             return result;
         }
