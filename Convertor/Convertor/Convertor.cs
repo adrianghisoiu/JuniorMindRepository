@@ -36,8 +36,9 @@ namespace Convertor
         [TestMethod]
         public void TestForCounter()
         {
-            Assert.AreEqual(3, CountZero(new byte[] { 0, 0, 0, 1, 2 }));
-            Assert.AreEqual(1, CountZero(new byte[] { 0, 1, 0, 0, 2 }));
+            /*Assert.AreEqual(3, CountZero(new byte[] { 0, 0, 0, 1, 2 }));
+            Assert.AreEqual(1, CountZero(new byte[] { 0, 1, 0, 0, 2 }));*/
+            Assert.AreEqual(1, CountZero(new byte[] { 1, 0 }));
         }
 
         [TestMethod]
@@ -84,8 +85,13 @@ namespace Convertor
         {
             CollectionAssert.AreEqual(ConvertToBinary(1), CalculateSubstraction(ConvertToBinary(2), ConvertToBinary(1)));
             CollectionAssert.AreEqual(ConvertToBinary(7), CalculateSubstraction(ConvertToBinary(11), ConvertToBinary(4)));
-
         }
+  
+      /*  [TestMethod]
+        public void TestForCalculateMultiplication()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(6), CalculateMultiplication(ConvertToBinary(3), ConvertToBinary(2)));
+        }*/
 
         byte GetElement(byte[] myByteArray, int position)
         {
@@ -154,8 +160,13 @@ namespace Convertor
         int CountZero(byte[] number)
         {
             int count = 0;
-            while (count < number.Length && number[count] == 0)
+            int i = number.Length - 1;
+            while (i > 0 && number[i] == 0)
+            {
                 count++;
+                i--;
+            }
+                
             return count;
         }
 
@@ -199,7 +210,7 @@ namespace Convertor
             for (int i = Math.Max(firstNumber.Length, secondNumber.Length); i > 0; i--)
                 if ((GetElement(firstNumber, i) != GetElement(secondNumber, i)))
                 {
-                    numberLess = (GetElement(firstNumber, i) < GetElement(secondNumber, i)) ? true : false;
+                    numberLess = (GetElement(firstNumber, i) < GetElement(secondNumber, i));
                     break;
                 }
             return numberLess;
@@ -246,10 +257,22 @@ namespace Convertor
                 i++;
             }
 
-            Array.Resize(ref finalNumber, finalNumber.Length - CountZero(finalNumber) - 1);
+            Array.Resize(ref finalNumber, finalNumber.Length - CountZero(finalNumber));
             Array.Reverse(finalNumber);
 
             return finalNumber;
         }
+
+       /* byte[] CalculateMultiplication(byte[] firstNumber, byte[] secondNumber)
+        {
+            byte[] result = { 0 };
+            for (byte[] i = { 0 }; LessThan(i, secondNumber); CalculateSum(i, new byte[] { 1 }))
+                CalculateSum(result, firstNumber);
+
+            Array.Resize(ref result, result.Length - CountZero(result));
+            Array.Reverse(result);
+
+            return result;
+        }*/
     }
 }
