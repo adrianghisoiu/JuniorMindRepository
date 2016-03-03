@@ -92,6 +92,7 @@ namespace Convertor
         public void TestForCalculateMultiplication()
         {
             CollectionAssert.AreEqual(ConvertToAnyBase(6), CalculateMultiplication(ConvertToAnyBase(3), ConvertToAnyBase(2)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(9, 16), CalculateMultiplication(ConvertToAnyBase(3, 16), ConvertToAnyBase(3, 16), 16));
         }
 
         [TestMethod]
@@ -305,11 +306,11 @@ namespace Convertor
             return finalNumber;
         }
 
-       byte[] CalculateMultiplication(byte[] firstNumber, byte[] secondNumber)
+       byte[] CalculateMultiplication(byte[] firstNumber, byte[] secondNumber, int baseNumber = 2)
         {
             byte[] result = { 0 };
-            for (byte[] i = { 0 }; LessThan(i, secondNumber); i = CalculateSum(i, new byte[] { 1 }))
-                result = CalculateSum(result, firstNumber);
+            for (byte[] i = { 0 }; LessThan(i, secondNumber); i = CalculateSum(i, new byte[] { 1 }, baseNumber))
+                result = CalculateSum(result, firstNumber, baseNumber);
 
             return result;
         }
