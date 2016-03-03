@@ -79,6 +79,14 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(3), CalculateSum(ConvertToBinary(1), ConvertToBinary(2)));
         }
 
+        [TestMethod]
+        public void TestForCalculateSubstraction()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(1), CalculateSubstraction(ConvertToBinary(2), ConvertToBinary(1)));
+            CollectionAssert.AreEqual(ConvertToBinary(7), CalculateSubstraction(ConvertToBinary(11), ConvertToBinary(4)));
+
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -220,6 +228,27 @@ namespace Convertor
             }
 
             Array.Reverse(finalNumber);
+            return finalNumber;
+        }
+
+        byte[] CalculateSubstraction(byte[] firstNumber, byte[] secondNumber)
+        {
+            int reminder = 0;
+            int total = 0;
+            int i = 0;
+            byte[] finalNumber = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
+
+            while(i < finalNumber.Length)
+            {
+                total = 2 + GetElement(firstNumber, i) - GetElement(secondNumber, i) - reminder;
+                finalNumber[i] = (byte)(total % 2);
+                reminder = (total < 2) ? 1 : 0;
+                i++;
+            }
+
+            Array.Resize(ref finalNumber, finalNumber.Length - CountZero(finalNumber) - 1);
+            Array.Reverse(finalNumber);
+
             return finalNumber;
         }
     }
