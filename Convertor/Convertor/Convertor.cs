@@ -124,6 +124,12 @@ namespace Convertor
             CollectionAssert.AreEqual(new byte[] { 10 }, ConvertToAnyBase(10, 16));
         }
 
+        [TestMethod]
+        public void TestForFactorial()
+        {
+            CollectionAssert.AreEqual(ConvertToAnyBase(6), Factorial(ConvertToAnyBase(3)));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -330,6 +336,15 @@ namespace Convertor
         bool NotEqual(byte[] firstNumber, byte[] secondNumber)
         {
             return (!Equal(firstNumber, secondNumber)) ? true : false;
+        }
+
+        byte[] Factorial(byte[] number)
+        {
+            byte[] result = { 1 };
+            for (byte[] i = { 1 }; LessThan(i, number); i = CalculateSum(i, new byte[] { 1 }))
+                 result = CalculateMultiplication(result, i);
+
+            return CalculateMultiplication(result, number);
         }
     }
 }
