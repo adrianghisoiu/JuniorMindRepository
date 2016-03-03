@@ -107,6 +107,7 @@ namespace Convertor
         {
             Assert.AreEqual(true, GraterThan(ConvertToAnyBase(5), ConvertToAnyBase(2)));
             Assert.AreEqual(false, GraterThan(ConvertToAnyBase(5), ConvertToAnyBase(7)));
+            Assert.AreEqual(false, GraterThan(ConvertToAnyBase(5, 16), ConvertToAnyBase(7, 16)));
         }
 
         [TestMethod]
