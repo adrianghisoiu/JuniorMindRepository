@@ -67,11 +67,16 @@ namespace Convertor
         [TestMethod]
         public void TestForLessThan()
         {
-           /* Assert.AreEqual(true, LessThan(ConvertToBinary(5), ConvertToBinary(7)));
+            Assert.AreEqual(true, LessThan(ConvertToBinary(5), ConvertToBinary(7)));
             Assert.AreEqual(false, LessThan(ConvertToBinary(7), ConvertToBinary(5)));
-            Assert.AreEqual(false, LessThan(ConvertToBinary(5), ConvertToBinary(5)));*/
+            Assert.AreEqual(false, LessThan(ConvertToBinary(5), ConvertToBinary(5)));
             Assert.AreEqual(false, LessThan(ConvertToBinary(8), ConvertToBinary(2)));
+        }
 
+        [TestMethod]
+        public void TestForCalculateSum()
+        {
+            CollectionAssert.AreEqual(ConvertToBinary(3), CalculateSum(ConvertToBinary(1), ConvertToBinary(2)));
         }
 
         byte GetElement(byte[] myByteArray, int position)
@@ -190,6 +195,32 @@ namespace Convertor
                     break;
                 }
             return numberLess;
+        }
+
+        byte[] CalculateSum(byte[] firstNumber, byte[] secondNumber)
+        {
+            int reminder = 0;
+            int total = 0;
+            byte[] finalNumber = new byte[Math.Max(firstNumber.Length, secondNumber.Length)];
+            int i = 0;
+
+            while (i < finalNumber.Length)
+            {
+                total = GetElement(firstNumber, i) + GetElement(secondNumber, i) + reminder;
+                finalNumber[i] = (byte)(total % 2);
+                reminder = total / 2;
+                i++;
+            }
+
+            if( reminder == 1)
+            {
+                Array.Resize(ref finalNumber, finalNumber.Length + 1);
+                i = finalNumber.Length - 1;
+                finalNumber[i] = 1;
+            }
+
+            Array.Reverse(finalNumber);
+            return finalNumber;
         }
     }
 }
