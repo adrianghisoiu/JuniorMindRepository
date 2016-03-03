@@ -70,6 +70,7 @@ namespace Convertor
             Assert.AreEqual(false, LessThan(ConvertToAnyBase(7), ConvertToAnyBase(5)));
             Assert.AreEqual(false, LessThan(ConvertToAnyBase(5), ConvertToAnyBase(5)));
             Assert.AreEqual(false, LessThan(ConvertToAnyBase(8), ConvertToAnyBase(2)));
+            Assert.AreEqual(true, LessThan(ConvertToAnyBase(15, 16), ConvertToAnyBase(20, 16)));
         }
 
         [TestMethod]
