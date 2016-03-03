@@ -125,6 +125,7 @@ namespace Convertor
             Assert.AreEqual(true, NotEqual(ConvertToAnyBase(3), ConvertToAnyBase(5)));
             Assert.AreEqual(false, NotEqual(ConvertToAnyBase(3), ConvertToAnyBase(3)));
             Assert.AreEqual(false, NotEqual(ConvertToAnyBase(5, 16), ConvertToAnyBase(5, 16)));
+            Assert.AreEqual(true, NotEqual(ConvertToAnyBase(18, 16), ConvertToAnyBase(7, 16)));
         }
 
         [TestMethod]
