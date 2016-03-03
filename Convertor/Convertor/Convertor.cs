@@ -101,6 +101,13 @@ namespace Convertor
         public void TestForGraterThan()
         {
             Assert.AreEqual(true, GraterThan(ConvertToBinary(5), ConvertToBinary(2)));
+            Assert.AreEqual(false, GraterThan(ConvertToBinary(5), ConvertToBinary(7)));
+        }
+
+        [TestMethod]
+        public void TestForEqual()
+        {
+            Assert.AreEqual(true, Equal(ConvertToBinary(5), ConvertToBinary(5)));
         }
 
         byte GetElement(byte[] myByteArray, int position)
@@ -300,7 +307,14 @@ namespace Convertor
                 return  false;
             else
                return true;
+        }
 
+        bool Equal(byte[] firstNumber, byte[] secondNumber)
+        {
+            if (!(LessThan(firstNumber, secondNumber) && LessThan(secondNumber, firstNumber)))
+                return true;
+            else
+                return false;
         }
     }
 }
