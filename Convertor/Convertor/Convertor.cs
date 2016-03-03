@@ -77,6 +77,7 @@ namespace Convertor
         public void TestForCalculateSum()
         {
             CollectionAssert.AreEqual(ConvertToAnyBase(3), CalculateSum(ConvertToAnyBase(1), ConvertToAnyBase(2)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(10, 16), CalculateSum(ConvertToAnyBase(6, 16), ConvertToAnyBase(4,16), 16));
         }
 
         [TestMethod]
@@ -256,7 +257,7 @@ namespace Convertor
             return numberLess;
         }
 
-        byte[] CalculateSum(byte[] firstNumber, byte[] secondNumber)
+        byte[] CalculateSum(byte[] firstNumber, byte[] secondNumber, int baseNumber = 2)
         {
             int reminder = 0;
             int total = 0;
@@ -266,8 +267,8 @@ namespace Convertor
             while (i < finalNumber.Length)
             {
                 total = GetElement(firstNumber, i) + GetElement(secondNumber, i) + reminder;
-                finalNumber[i] = (byte)(total % 2);
-                reminder = total / 2;
+                finalNumber[i] = (byte)(total % baseNumber);
+                reminder = total / baseNumber;
                 i++;
             }
 
