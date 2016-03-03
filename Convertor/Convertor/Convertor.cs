@@ -85,8 +85,9 @@ namespace Convertor
         {
             CollectionAssert.AreEqual(ConvertToAnyBase(1), CalculateSubstraction(ConvertToAnyBase(2), ConvertToAnyBase(1)));
             CollectionAssert.AreEqual(ConvertToAnyBase(7), CalculateSubstraction(ConvertToAnyBase(11), ConvertToAnyBase(4)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(4, 16), CalculateSubstraction(ConvertToAnyBase(6, 16), ConvertToAnyBase(2, 16), 16));
         }
-  
+
         [TestMethod]
         public void TestForCalculateMultiplication()
         {
@@ -283,7 +284,7 @@ namespace Convertor
             return finalNumber;
         }
 
-        byte[] CalculateSubstraction(byte[] firstNumber, byte[] secondNumber)
+        byte[] CalculateSubstraction(byte[] firstNumber, byte[] secondNumber, int baseNumber = 2)
         {
             int reminder = 0;
             int total = 0;
@@ -292,9 +293,9 @@ namespace Convertor
 
             while(i < finalNumber.Length)
             {
-                total = 2 + GetElement(firstNumber, i) - GetElement(secondNumber, i) - reminder;
-                finalNumber[i] = (byte)(total % 2);
-                reminder = (total < 2) ? 1 : 0;
+                total = baseNumber + GetElement(firstNumber, i) - GetElement(secondNumber, i) - reminder;
+                finalNumber[i] = (byte)(total % baseNumber);
+                reminder = (total < baseNumber) ? 1 : 0;
                 i++;
             }
 
