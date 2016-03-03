@@ -108,6 +108,7 @@ namespace Convertor
         public void TestForEqual()
         {
             Assert.AreEqual(true, Equal(ConvertToBinary(5), ConvertToBinary(5)));
+            Assert.AreEqual(false, Equal(ConvertToBinary(3), ConvertToBinary(5)));
         }
 
         byte GetElement(byte[] myByteArray, int position)
@@ -311,7 +312,7 @@ namespace Convertor
 
         bool Equal(byte[] firstNumber, byte[] secondNumber)
         {
-            if (!(LessThan(firstNumber, secondNumber) && LessThan(secondNumber, firstNumber)))
+            if (!(LessThan(firstNumber, secondNumber) || LessThan(secondNumber, firstNumber)))
                 return true;
             else
                 return false;
