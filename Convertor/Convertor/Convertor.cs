@@ -132,6 +132,8 @@ namespace Convertor
         byte[] ConverToBinary(int numberToConvert)
         {
             int i = 0;
+            if (numberToConvert == 0)
+                return new byte[] { 0 };
             byte[] convertedNumber = new byte[0];
             while (numberToConvert > 0)
             {
@@ -235,7 +237,7 @@ namespace Convertor
         bool LessThan(byte[] firstNumber, byte[] secondNumber)
         {
             bool numberLess = false;
-            for (int i = Math.Max(firstNumber.Length, secondNumber.Length); i > 0; i--)
+            for (int i = Math.Max(firstNumber.Length, secondNumber.Length) - 1; i >= 0; i--)
                 if ((GetElement(firstNumber, i) != GetElement(secondNumber, i)))
                 {
                     numberLess = (GetElement(firstNumber, i) < GetElement(secondNumber, i));
