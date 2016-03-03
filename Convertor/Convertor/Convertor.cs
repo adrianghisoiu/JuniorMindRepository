@@ -16,8 +16,8 @@ namespace Convertor
         [TestMethod]
         public void TestForConvert()
         {
-            CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConverToBinary(2));
-            CollectionAssert.AreEqual(new byte[] { 1, 1, 1 }, ConverToBinary(7));
+            CollectionAssert.AreEqual(new byte[] { 1, 0 }, ConvertToAnyBase(2));
+            CollectionAssert.AreEqual(new byte[] { 1, 1, 1 }, ConvertToAnyBase(7));
         }
 
         [TestMethod]
@@ -29,8 +29,8 @@ namespace Convertor
         [TestMethod]
         public void TestOperatorAnd()
         {
-            CollectionAssert.AreEqual(ConverToBinary(3 & 6), And(ConverToBinary(3), ConverToBinary(6)));
-            CollectionAssert.AreEqual(ConverToBinary(3 & 96), And(ConverToBinary(3), ConverToBinary(96)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(3 & 6), And(ConvertToAnyBase(3), ConvertToAnyBase(6)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(3 & 96), And(ConvertToAnyBase(3), ConvertToAnyBase(96)));
         }
 
         [TestMethod]
@@ -42,80 +42,80 @@ namespace Convertor
         [TestMethod]
         public void TestOperatorOr()
         {
-            CollectionAssert.AreEqual(ConverToBinary(3 | 6), Or(ConverToBinary(3), ConverToBinary(6)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(3 | 6), Or(ConvertToAnyBase(3), ConvertToAnyBase(6)));
         }
 
         [TestMethod]
         public void TestOpertorXor()
         {
-            CollectionAssert.AreEqual(ConverToBinary(3 ^ 6), Xor(ConverToBinary(3), ConverToBinary(6)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(3 ^ 6), Xor(ConvertToAnyBase(3), ConvertToAnyBase(6)));
         }
 
         [TestMethod]
         public void TestForRightHandShift()
         {
-            CollectionAssert.AreEqual(ConverToBinary(2 >> 1), RightHandShift(new byte[] { 1, 0 }, 1));
+            CollectionAssert.AreEqual(ConvertToAnyBase(2 >> 1), RightHandShift(new byte[] { 1, 0 }, 1));
         }
 
         [TestMethod]
         public void TestForLeftHandShift()
         {
-            CollectionAssert.AreEqual(ConverToBinary(2 << 1), LeftHandShift(new byte[] { 1, 0 }, 1));
+            CollectionAssert.AreEqual(ConvertToAnyBase(2 << 1), LeftHandShift(new byte[] { 1, 0 }, 1));
         }
 
         [TestMethod]
         public void TestForLessThan()
         {
-            Assert.AreEqual(true, LessThan(ConverToBinary(5), ConverToBinary(7)));
-            Assert.AreEqual(false, LessThan(ConverToBinary(7), ConverToBinary(5)));
-            Assert.AreEqual(false, LessThan(ConverToBinary(5), ConverToBinary(5)));
-            Assert.AreEqual(false, LessThan(ConverToBinary(8), ConverToBinary(2)));
+            Assert.AreEqual(true, LessThan(ConvertToAnyBase(5), ConvertToAnyBase(7)));
+            Assert.AreEqual(false, LessThan(ConvertToAnyBase(7), ConvertToAnyBase(5)));
+            Assert.AreEqual(false, LessThan(ConvertToAnyBase(5), ConvertToAnyBase(5)));
+            Assert.AreEqual(false, LessThan(ConvertToAnyBase(8), ConvertToAnyBase(2)));
         }
 
         [TestMethod]
         public void TestForCalculateSum()
         {
-            CollectionAssert.AreEqual(ConverToBinary(3), CalculateSum(ConverToBinary(1), ConverToBinary(2)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(3), CalculateSum(ConvertToAnyBase(1), ConvertToAnyBase(2)));
         }
 
         [TestMethod]
         public void TestForCalculateSubstraction()
         {
-            CollectionAssert.AreEqual(ConverToBinary(1), CalculateSubstraction(ConverToBinary(2), ConverToBinary(1)));
-            CollectionAssert.AreEqual(ConverToBinary(7), CalculateSubstraction(ConverToBinary(11), ConverToBinary(4)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(1), CalculateSubstraction(ConvertToAnyBase(2), ConvertToAnyBase(1)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(7), CalculateSubstraction(ConvertToAnyBase(11), ConvertToAnyBase(4)));
         }
   
         [TestMethod]
         public void TestForCalculateMultiplication()
         {
-            CollectionAssert.AreEqual(ConverToBinary(6), CalculateMultiplication(ConverToBinary(3), ConverToBinary(2)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(6), CalculateMultiplication(ConvertToAnyBase(3), ConvertToAnyBase(2)));
         }
 
         [TestMethod]
         public void TestForCalculateDivision()
         {
-            CollectionAssert.AreEqual(ConverToBinary(2), CalculateDivision(ConverToBinary(6), ConverToBinary(3)));
+            CollectionAssert.AreEqual(ConvertToAnyBase(2), CalculateDivision(ConvertToAnyBase(6), ConvertToAnyBase(3)));
         }
 
         [TestMethod]
         public void TestForGraterThan()
         {
-            Assert.AreEqual(true, GraterThan(ConverToBinary(5), ConverToBinary(2)));
-            Assert.AreEqual(false, GraterThan(ConverToBinary(5), ConverToBinary(7)));
+            Assert.AreEqual(true, GraterThan(ConvertToAnyBase(5), ConvertToAnyBase(2)));
+            Assert.AreEqual(false, GraterThan(ConvertToAnyBase(5), ConvertToAnyBase(7)));
         }
 
         [TestMethod]
         public void TestForEqual()
         {
-            Assert.AreEqual(true, Equal(ConverToBinary(5), ConverToBinary(5)));
-            Assert.AreEqual(false, Equal(ConverToBinary(3), ConverToBinary(5)));
+            Assert.AreEqual(true, Equal(ConvertToAnyBase(5), ConvertToAnyBase(5)));
+            Assert.AreEqual(false, Equal(ConvertToAnyBase(3), ConvertToAnyBase(5)));
         }
 
         [TestMethod]
         public void TestForNotEqual()
         {
-            Assert.AreEqual(true, NotEqual(ConverToBinary(3), ConverToBinary(5)));
-            Assert.AreEqual(false, NotEqual(ConverToBinary(3), ConverToBinary(3)));
+            Assert.AreEqual(true, NotEqual(ConvertToAnyBase(3), ConvertToAnyBase(5)));
+            Assert.AreEqual(false, NotEqual(ConvertToAnyBase(3), ConvertToAnyBase(3)));
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace Convertor
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
         }
 
-        byte[] ConverToBinary(int numberToConvert)
+        byte[] ConvertToAnyBase(int numberToConvert, int baseToConvert = 2)
         {
             int i = 0;
             if (numberToConvert == 0)
@@ -138,8 +138,8 @@ namespace Convertor
             while (numberToConvert > 0)
             {
                 Array.Resize(ref convertedNumber, i + 1);
-                convertedNumber[i++] = (byte)(numberToConvert % 2);
-                numberToConvert = numberToConvert / 2;
+                convertedNumber[i++] = (byte)(numberToConvert % baseToConvert);
+                numberToConvert = numberToConvert / baseToConvert;
             }
             Array.Reverse(convertedNumber);
             return convertedNumber;
@@ -312,7 +312,7 @@ namespace Convertor
                firstNumber = CalculateSubstraction(firstNumber, secondNumber);
                 contor++;
             }
-            result = ConverToBinary(contor);
+            result = ConvertToAnyBase(contor);
 
             return result;
         }
@@ -330,20 +330,6 @@ namespace Convertor
         bool NotEqual(byte[] firstNumber, byte[] secondNumber)
         {
             return (!Equal(firstNumber, secondNumber)) ? true : false;
-        }
-
-        byte[] ConvertToAnyBase(int numberToConvert, int numberBase)
-        {
-            int i = 0;
-            byte[] convertedNumber = new byte[0];
-            while (numberToConvert > 0)
-            {
-                Array.Resize(ref convertedNumber, i + 1);
-                convertedNumber[i++] = (byte)(numberToConvert % numberBase);
-                numberToConvert = numberToConvert / numberBase;
-            }
-            Array.Reverse(convertedNumber);
-            return convertedNumber;
         }
     }
 }
