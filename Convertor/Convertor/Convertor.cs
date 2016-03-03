@@ -115,6 +115,7 @@ namespace Convertor
         public void TestForNotEqual()
         {
             Assert.AreEqual(true, NotEqual(ConvertToBinary(3), ConvertToBinary(5)));
+            Assert.AreEqual(false, NotEqual(ConvertToBinary(3), ConvertToBinary(3)));
         }
 
         byte GetElement(byte[] myByteArray, int position)
