@@ -97,6 +97,12 @@ namespace Convertor
             CollectionAssert.AreEqual(ConvertToBinary(2), CalculateDivision(ConvertToBinary(6), ConvertToBinary(3)));
         }
 
+        [TestMethod]
+        public void TestForGraterThan()
+        {
+            Assert.AreEqual(true, GraterThan(ConvertToBinary(5), ConvertToBinary(2)));
+        }
+
         byte GetElement(byte[] myByteArray, int position)
         {
             return (byte)(position < myByteArray.Length ? myByteArray[myByteArray.Length - 1 - position] : 0);
@@ -168,7 +174,6 @@ namespace Convertor
                 count++;
                 i--;
             }
-                
             return count;
         }
 
@@ -287,6 +292,15 @@ namespace Convertor
             result = ConvertToBinary(contor);
 
             return result;
+        }
+
+        bool GraterThan(byte[] firstNumber, byte[] secondNumber)
+        {
+            if (LessThan(firstNumber, secondNumber))
+                return  false;
+            else
+               return true;
+
         }
     }
 }
