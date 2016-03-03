@@ -128,6 +128,9 @@ namespace Convertor
         public void TestForFactorial()
         {
             CollectionAssert.AreEqual(ConvertToAnyBase(6), Factorial(ConvertToAnyBase(3)));
+            byte[] a = ConvertToAnyBase(49);
+            byte[] b = ConvertToAnyBase(48);
+            CollectionAssert.AreEqual(a, Factorial(CalculateDivision(a, b)));
         }
 
         byte GetElement(byte[] myByteArray, int position)
