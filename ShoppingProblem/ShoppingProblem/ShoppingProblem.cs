@@ -50,6 +50,13 @@ namespace ShoppingProblem
             DeleteExpensiveProduct(product);
         }
 
+        [TestMethod]
+        public void TestForMeanValue()
+        {
+            var product = new Products[] { new Products(10.5, "Sprite"), new Products(15.78, "7Up"), new Products(100.79, "Dance Lessons") };
+            Assert.AreEqual(42.35, CalculateMeanValue(product), 1e-2);
+        }
+
         struct Products
         {
             public double price;
@@ -106,6 +113,11 @@ namespace ShoppingProblem
             Array.Resize(ref product, product.Length + 1);
             product[product.Length - 1].price = 100;
             product[product.Length - 1].productName = "Mousepad";
+        }
+
+        double CalculateMeanValue(Products[] product)
+        {
+            return CalculateTotalPrice(product) / product.Length;
         }
     }
 }
