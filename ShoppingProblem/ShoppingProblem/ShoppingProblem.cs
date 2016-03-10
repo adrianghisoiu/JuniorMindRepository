@@ -43,6 +43,13 @@ namespace ShoppingProblem
             Assert.IsTrue(product[product.Length-1].productName == "Mousepad");
         }
 
+        [TestMethod]
+        public void TestForEmptyBasket()
+        {
+            var product = new Products[] { };
+            DeleteExpensiveProduct(product);
+        }
+
         struct Products
         {
             public double price;
@@ -87,6 +94,8 @@ namespace ShoppingProblem
 
         void DeleteExpensiveProduct(Products[] product)
         {
+            if (product.Length == 0)
+                return;
             int deletedProduct = FindTheExpensiveProduct(product);
             product[deletedProduct] = product[product.Length - 1];
             Array.Resize(ref product, product.Length - 1);
