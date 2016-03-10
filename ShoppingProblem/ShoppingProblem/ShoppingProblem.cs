@@ -33,7 +33,15 @@ namespace ShoppingProblem
             var product = new Products[] { new Products(1600, "Bed"), new Products(100, "SDD"), new Products(150, "RAM") };
             DeleteExpensiveProduct(product);
             Assert.IsTrue(product[0].productName != "Bed");
-        } 
+        }
+
+        [TestMethod]
+        public void TestForNewItem()
+        {
+            var product = new Products[] { new Products(1600, "Bed"), new Products(100, "SDD"), new Products(150, "RAM") };
+            AddNewItem(ref product);
+            Assert.IsTrue(product[product.Length-1].productName == "Mousepad");
+        }
 
         struct Products
         {
@@ -82,6 +90,13 @@ namespace ShoppingProblem
             int deletedProduct = FindTheExpensiveProduct(product);
             product[deletedProduct] = product[product.Length - 1];
             Array.Resize(ref product, product.Length - 1);
+        }
+
+        void AddNewItem(ref Products[] product)
+        {
+            Array.Resize(ref product, product.Length + 1);
+            product[product.Length - 1].price = 100;
+            product[product.Length - 1].productName = "Mousepad";
         }
     }
 }
