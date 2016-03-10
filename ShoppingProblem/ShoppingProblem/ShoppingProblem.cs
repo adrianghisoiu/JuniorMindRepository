@@ -80,6 +80,8 @@ namespace ShoppingProblem
         void DeleteExpensiveProduct(Products[] product)
         {
             int deletedProduct = FindTheExpensiveProduct(product);
+            product[deletedProduct] = product[product.Length - 1];
+            Array.Resize(ref product, product.Length - 1);
         }
     }
 }
