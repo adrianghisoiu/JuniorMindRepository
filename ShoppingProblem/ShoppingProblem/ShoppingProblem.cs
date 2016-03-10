@@ -20,6 +20,13 @@ namespace ShoppingProblem
             Assert.AreEqual("Teddy Bear", FindTheCheapestProduct(product));
         }
 
+        [TestMethod]
+        public void TestForExpensiveProduct()
+        {
+            var product = new Products[] { new Products(1600, "Bed"), new Products(100, "SDD"), new Products(150, "RAM") };
+            Assert.AreEqual("Bed", FindTheExpensiveProduct(product));
+        }
+
         struct Products
         {
             public double price;
@@ -43,12 +50,23 @@ namespace ShoppingProblem
         string FindTheCheapestProduct(Products[] product)
         {
             double cheapestPrice = product[0].price;
-            string cheapestProduct = null;
+            string cheapestProduct = product[0].productName;
             for (int i = 1; i < product.Length; i++)
                 if (product[i].price < cheapestPrice)
                     cheapestProduct = product[i].productName;
 
             return cheapestProduct;
+        }
+
+        string FindTheExpensiveProduct(Products[] product)
+        {
+            double expensivePrice = product[0].price;
+            string expensiveProduct = product[0].productName;
+            for (int i = 1; i < product.Length; i++)
+                if (product[i].price > expensivePrice)
+                    expensiveProduct = product[i].productName;
+
+            return expensiveProduct;
         }
     }
 }
