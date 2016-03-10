@@ -24,8 +24,16 @@ namespace ShoppingProblem
         public void TestForExpensiveProduct()
         {
             var product = new Products[] { new Products(1600, "Bed"), new Products(100, "SDD"), new Products(150, "RAM") };
-            Assert.AreEqual("Bed", FindTheExpensiveProduct(product));
+            Assert.AreEqual(0 , FindTheExpensiveProduct(product));
         }
+
+        [TestMethod]
+        public void TestForDeletedItem()
+        {
+            var product = new Products[] { new Products(1600, "Bed"), new Products(100, "SDD"), new Products(150, "RAM") };
+            DeleteExpensiveProduct(product);
+            Assert.IsTrue(product[0].productName != "Bed");
+        } 
 
         struct Products
         {
@@ -58,15 +66,20 @@ namespace ShoppingProblem
             return cheapestProduct;
         }
 
-        string FindTheExpensiveProduct(Products[] product)
+        int FindTheExpensiveProduct(Products[] product)
         {
             double expensivePrice = product[0].price;
-            string expensiveProduct = product[0].productName;
+            int expensiveProduct = 0;
             for (int i = 1; i < product.Length; i++)
                 if (product[i].price > expensivePrice)
-                    expensiveProduct = product[i].productName;
+                    expensiveProduct = i;
 
             return expensiveProduct;
+        }
+
+        void DeleteExpensiveProduct(Products[] product)
+        {
+            int deletedProduct = FindTheExpensiveProduct(product);
         }
     }
 }
