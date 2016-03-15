@@ -9,13 +9,13 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForSmallLetters()
         {
-            Assert.IsTrue(SeeIfSmallLetters(SmallLettersGenerator(6)));
+            Assert.AreEqual(6, SeeHowManySmallLetters(SmallLettersGenerator(6)));
         }
 
         [TestMethod]
-        public void TestToSeeIfItsSmall()
+        public void TestToSeeHowManySmallLetters()
         {
-            Assert.IsTrue(SeeIfSmallLetters("abc"));
+            Assert.AreEqual(3, SeeHowManySmallLetters("abc"));
         }
 
         string SmallLettersGenerator(int number=6)
@@ -23,7 +23,7 @@ namespace PasswordGenerator
             Random rand = new Random();
             char c = (char)0;
             string myString = null;
-            for (int i = 0; i <= number; i++)
+            for (int i = 0; i < number; i++)
             {
                 c = (char)('a' + rand.Next(0, 26));
                 myString += c.ToString();
@@ -31,16 +31,14 @@ namespace PasswordGenerator
             return myString;
         }
 
-        bool SeeIfSmallLetters(string myString)
+        int SeeHowManySmallLetters(string myString)
         {
-            bool check = true;
+            int contor = 0;
             for (int i = 0; i < myString.Length; i++)
-                if(myString[i] < 'a' && myString[i] > 'z')
-                {
-                    check = false;
-                    break;
-                }
-            return check;
+                if(myString[i] >= 'a' && myString[i] <= 'z')
+                    contor++;
+ 
+            return contor;
         }
     }
 }
