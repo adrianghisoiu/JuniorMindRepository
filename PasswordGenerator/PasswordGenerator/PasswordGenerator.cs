@@ -20,6 +20,11 @@ namespace PasswordGenerator
 
         string SmallLettersGenerator(int number=6)
         {
+            return MyPasswordGenerator(number);
+        }
+
+        private static string MyPasswordGenerator(int number)
+        {
             Random rand = new Random();
             char c = (char)0;
             string myString = null;
@@ -33,11 +38,16 @@ namespace PasswordGenerator
 
         int SeeHowManySmallLetters(string myString)
         {
+            return SeeHowManyLetters(myString);
+        }
+
+        private static int SeeHowManyLetters(string myString)
+        {
             int contor = 0;
             for (int i = 0; i < myString.Length; i++)
-                if(myString[i] >= 'a' && myString[i] <= 'z')
+                if (myString[i] >= 'a' && myString[i] <= 'z')
                     contor++;
- 
+
             return contor;
         }
     }
