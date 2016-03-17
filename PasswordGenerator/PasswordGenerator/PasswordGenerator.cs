@@ -21,13 +21,15 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForUpperCaseLetters()
         {
-            Assert.AreEqual(3, CountUpperCaseLetters(GeneratePassword(6, 3)));
+            var actual = GeneratePassword(6, 3);
+            Assert.AreEqual(3, CountUpperCaseLetters(actual));
+            Assert.AreEqual(6, actual.Length);
         }
 
         private static string GeneratePassword(int passwordLength, int upperNumber=0)
         {
             Random rand = new Random();
-            string myString = CharactersGenerator(passwordLength, rand, 'a', 'z')
+            string myString = CharactersGenerator(passwordLength - upperNumber, rand, 'a', 'z')
                 + CharactersGenerator(upperNumber, rand, 'A', 'Z');
             return myString;
         }
