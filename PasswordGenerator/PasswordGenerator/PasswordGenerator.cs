@@ -26,11 +26,18 @@ namespace PasswordGenerator
             Assert.AreEqual(6, actual.Length);
         }
 
-        private static string GeneratePassword(int passwordLength, int upperNumber=0)
+        [TestMethod]
+        public void TestForNumbers()
+        {
+            Assert.AreEqual(2, CountNumbers(GeneratePassword(6, 2, 2)));
+        }
+
+        private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0)
         {
             Random rand = new Random();
             string myString = CharactersGenerator(passwordLength - upperNumber, rand, 'a', 'z')
-                + CharactersGenerator(upperNumber, rand, 'A', 'Z');
+                + CharactersGenerator(upperNumber, rand, 'A', 'Z')
+                + CharactersGenerator(number, rand, '0', '9');
             return myString;
         }
 
@@ -55,6 +62,11 @@ namespace PasswordGenerator
         int CountUpperCaseLetters(string myString)
         {
             return CountCharacters(myString, 'A', 'Z');
+        }
+
+        int CountNumbers(string myString)
+        {
+            return CountCharacters(myString, '0', '9');
         }
 
         private static int CountCharacters(string myString, char first, char second)
