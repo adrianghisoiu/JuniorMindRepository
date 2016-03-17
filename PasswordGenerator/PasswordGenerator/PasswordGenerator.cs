@@ -9,18 +9,13 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForSmallLetters()
         {
-            Assert.AreEqual(6, SeeHowManySmallLetters(SmallLettersGenerator(6)));
+            Assert.AreEqual(6, CountLowerCaseLetters(GeneratePassword(6)));
         }
 
         [TestMethod]
         public void TestToSeeHowManySmallLetters()
         {
-            Assert.AreEqual(3, SeeHowManySmallLetters("abc"));
-        }
-
-        string SmallLettersGenerator(int number)
-        {
-            return GeneratePassword(number);
+            Assert.AreEqual(3, CountLowerCaseLetters("abc"));
         }
 
         private static string GeneratePassword(int number)
@@ -43,12 +38,12 @@ namespace PasswordGenerator
             return myString;
         }
 
-        int SeeHowManySmallLetters(string myString)
+        int CountLowerCaseLetters(string myString)
         {
-            return SeeHowManyLetters(myString);
+            return CountCharacters(myString);
         }
 
-        private static int SeeHowManyLetters(string myString)
+        private static int CountCharacters(string myString)
         {
             int contor = 0;
             for (int i = 0; i < myString.Length; i++)
