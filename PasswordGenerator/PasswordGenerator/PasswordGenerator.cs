@@ -18,10 +18,17 @@ namespace PasswordGenerator
             Assert.AreEqual(3, CountLowerCaseLetters("abc"));
         }
 
-        private static string GeneratePassword(int number)
+        [TestMethod]
+        public void TestForUpperCaseLetters()
+        {
+            Assert.AreEqual(3, CountUpperCaseLetters(GeneratePassword(6, 3)));
+        }
+
+        private static string GeneratePassword(int passwordLength, int upperNumber=0)
         {
             Random rand = new Random();
-            string myString = CharactersGenerator(number, rand, 'a', 'z');
+            string myString = CharactersGenerator(passwordLength, rand, 'a', 'z')
+                + CharactersGenerator(upperNumber, rand, 'A', 'Z');
             return myString;
         }
 
@@ -41,6 +48,11 @@ namespace PasswordGenerator
         int CountLowerCaseLetters(string myString)
         {
             return CountCharacters(myString, 'a', 'z');
+        }
+
+        int CountUpperCaseLetters(string myString)
+        {
+            return CountCharacters(myString, 'A', 'Z');
         }
 
         private static int CountCharacters(string myString, char first, char second)
