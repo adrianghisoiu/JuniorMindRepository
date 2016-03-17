@@ -29,13 +29,15 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForNumbers()
         {
-            Assert.AreEqual(2, CountNumbers(GeneratePassword(6, 2, 2)));
+            var actual = GeneratePassword(6, 2, 2);
+            Assert.AreEqual(2, CountNumbers(actual));
+            Assert.AreEqual(6, actual.Length);
         }
 
         private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0)
         {
             Random rand = new Random();
-            string myString = CharactersGenerator(passwordLength - upperNumber, rand, 'a', 'z')
+            string myString = CharactersGenerator(passwordLength - upperNumber - number, rand, 'a', 'z')
                 + CharactersGenerator(upperNumber, rand, 'A', 'Z')
                 + CharactersGenerator(number, rand, '0', '9');
             return myString;
