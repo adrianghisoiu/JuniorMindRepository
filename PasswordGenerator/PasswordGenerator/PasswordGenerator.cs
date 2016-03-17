@@ -18,14 +18,20 @@ namespace PasswordGenerator
             Assert.AreEqual(3, SeeHowManySmallLetters("abc"));
         }
 
-        string SmallLettersGenerator(int number=6)
+        string SmallLettersGenerator(int number)
         {
-            return MyPasswordGenerator(number);
+            return GeneratePassword(number);
         }
 
-        private static string MyPasswordGenerator(int number)
+        private static string GeneratePassword(int number)
         {
             Random rand = new Random();
+            string myString = CharactersGenerator(number, rand);
+            return myString;
+        }
+
+        private static string CharactersGenerator(int number, Random rand)
+        {
             char c = (char)0;
             string myString = null;
             for (int i = 0; i < number; i++)
@@ -33,6 +39,7 @@ namespace PasswordGenerator
                 c = (char)('a' + rand.Next(0, 26));
                 myString += c.ToString();
             }
+
             return myString;
         }
 
