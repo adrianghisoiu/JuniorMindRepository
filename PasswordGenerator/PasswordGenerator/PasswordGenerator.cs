@@ -44,6 +44,14 @@ namespace PasswordGenerator
             Assert.AreEqual(2, CountLowerCaseLetters(actual));
         }
 
+        [TestMethod]
+        public void TestForExcludeSimilarCharacters()
+        {
+            /*var actual = GeneratePassword(10, 2, 2, 4);
+            char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
+            Assert.AreEqual*/
+        }
+
         private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
         {
             Random rand = new Random();
@@ -71,10 +79,15 @@ namespace PasswordGenerator
         private static string CharactersGenerator(int number, Random rand, char first, char second)
         {
             char c = (char)0;
+            char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
             string myString = null;
             for (int i = 0; i < number; i++)
             {
-                c = (char)(rand.Next(first, second+1));
+                c = (char)(rand.Next(first, second + 1));
+                while(Array.IndexOf(similarCharacters, c) >= 0)
+                {
+                    c = (char)(rand.Next(first, second + 1));
+                }
                 myString += c.ToString();
             }
 
@@ -118,7 +131,6 @@ namespace PasswordGenerator
         {
             int contor = 0;
             for (int i = 0; i < myString.Length; i++)
-              //  if (myString[i] >= first && myString[i] <= second)
               if(Array.IndexOf(symbols,myString[i])>=0)
                     contor++;
 
