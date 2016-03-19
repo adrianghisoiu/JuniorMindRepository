@@ -52,6 +52,14 @@ namespace PasswordGenerator
             Assert.AreEqual*/
         }
 
+        [TestMethod]
+        public void TestForExcludeAmbiguousCharacters()
+        {
+           /* var actual = GeneratePassword(10, 2, 2, 4);
+            char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
+            Assert.AreEqual*/
+        }
+
         private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
         {
             Random rand = new Random();
@@ -80,11 +88,12 @@ namespace PasswordGenerator
         {
             char c = (char)0;
             char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
+            char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>'};
             string myString = null;
             for (int i = 0; i < number; i++)
             {
                 c = (char)(rand.Next(first, second + 1));
-                while(Array.IndexOf(similarCharacters, c) >= 0)
+                while((Array.IndexOf(similarCharacters, c) >= 0) || (Array.IndexOf(ambiguousCharacters, c) >= 0));
                 {
                     c = (char)(rand.Next(first, second + 1));
                 }
