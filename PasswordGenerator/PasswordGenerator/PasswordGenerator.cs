@@ -38,7 +38,7 @@ namespace PasswordGenerator
         public void TestForSymbols()
         {
             var actual = GeneratePassword(10, 2, 2, 4);
-            //Assert.AreEqual(4, CountSymbols(actual));
+            Assert.AreEqual(4, CountSymbols(actual));
             Assert.AreEqual(2, CountNumbers(actual));
             Assert.AreEqual(2, CountUpperCaseLetters(actual));
             Assert.AreEqual(2, CountLowerCaseLetters(actual));
@@ -101,7 +101,7 @@ namespace PasswordGenerator
             char[] symbols = { '!', '"', '#', '$', '%', '&', '\'',  '(' , ')', '*' , '+', ',', '-', '.', '/', ':', ';',
             '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'};
 
-            return CountCharacters(myString, symbols[0], symbols[symbols.Length-1]);
+            return CountSymbols(myString, 0, symbols.Length, symbols);
         }
 
         private static int CountCharacters(string myString, char first, char second)
@@ -109,6 +109,17 @@ namespace PasswordGenerator
             int contor = 0;
             for (int i = 0; i < myString.Length; i++)
                 if (myString[i] >= first && myString[i] <= second)
+                    contor++;
+
+            return contor;
+        }
+
+        int CountSymbols(string myString, int first, int second, char[] symbols)
+        {
+            int contor = 0;
+            for (int i = 0; i < myString.Length; i++)
+              //  if (myString[i] >= first && myString[i] <= second)
+              if(Array.IndexOf(symbols,myString[i])>=0)
                     contor++;
 
             return contor;
