@@ -34,22 +34,47 @@ namespace PasswordGenerator
             Assert.AreEqual(6, actual.Length);
         }
 
-        private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0)
+        [TestMethod]
+        public void TestForSymbols()
+        {
+            var actual = GeneratePassword(10, 2, 2, 4);
+            //Assert.AreEqual(4, CountSymbols(actual));
+            Assert.AreEqual(2, CountNumbers(actual));
+            Assert.AreEqual(2, CountUpperCaseLetters(actual));
+            Assert.AreEqual(2, CountLowerCaseLetters(actual));
+        }
+
+        private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
         {
             Random rand = new Random();
-            string myString = CharactersGenerator(passwordLength - upperNumber - number, rand, 'a', 'z')
+            char[] symbols = { '!', '"', '#', '$', '%', '&', '\'',  '(' , ')', '*' , '+', ',', '-', '.', '/', ':', ';',
+            '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'};
+            string myString = CharactersGenerator(passwordLength - upperNumber - number - numberSymbols, rand, 'a', 'z')
                 + CharactersGenerator(upperNumber, rand, 'A', 'Z')
-                + CharactersGenerator(number, rand, '0', '9');
+                + CharactersGenerator(number, rand, '0', '9')
+                + GenerateSymbols(numberSymbols, rand, 0, symbols.Length, symbols);
+            
             return myString;
         }
 
+        static string GenerateSymbols(int number, Random rand,int first, int second, char[] symbols )
+        {
+            int c = 0;
+            string myString = null;
+            for (int i = 0; i < number; i++)
+            {
+                c = rand.Next(first, second);
+                myString += symbols[c].ToString();
+            }
+            return myString;
+        }
         private static string CharactersGenerator(int number, Random rand, char first, char second)
         {
             char c = (char)0;
             string myString = null;
             for (int i = 0; i < number; i++)
             {
-                c = (char)(rand.Next(first, second));
+                c = (char)(rand.Next(first, second+1));
                 myString += c.ToString();
             }
 
@@ -69,6 +94,14 @@ namespace PasswordGenerator
         int CountNumbers(string myString)
         {
             return CountCharacters(myString, '0', '9');
+        }
+
+        int CountSymbols(string myString)
+        {
+            char[] symbols = { '!', '"', '#', '$', '%', '&', '\'',  '(' , ')', '*' , '+', ',', '-', '.', '/', ':', ';',
+            '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'};
+
+            return CountCharacters(myString, symbols[0], symbols[symbols.Length-1]);
         }
 
         private static int CountCharacters(string myString, char first, char second)
