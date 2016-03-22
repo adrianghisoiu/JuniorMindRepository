@@ -60,8 +60,9 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForShufflePassword()
         {
-            var actual = GeneratePassword(15, 2, 2, 2);
-            Assert.AreEqual(15, actual);
+            var actual = GeneratePassword(15, 3, 3, 3);
+            Assert.AreEqual(15, actual.Length);
+            Assert.AreEqual("something", actual); //will fall, it's just to see if shuffle works
         }
 
         private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
