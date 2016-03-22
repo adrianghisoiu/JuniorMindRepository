@@ -20,6 +20,13 @@ namespace Cyclometter
             Assert.AreEqual(377, CalculateTotalDistance(cyclists), 1e-2);
         }
 
+        [TestMethod]
+        public void FindMeanSpeedForOneCyclist()
+        {
+            var cyclist = new Cyclist[] { new Cyclist("George", new int[] { 1, 2, 1 }, 6) };
+            Assert.AreEqual(25.13, CalculateMeanSpeedForOneCyclist(cyclist[0]), 1e-2);
+        }
+
         struct Cyclist
         {
             public string nameOfCyclist;
@@ -51,6 +58,11 @@ namespace Cyclometter
                 totalDistance += CalculateDistance(cyclist[i]);
 
             return totalDistance;
+        }
+
+        double CalculateMeanSpeedForOneCyclist(Cyclist oneCyclist)
+        {
+            return CalculateDistance(oneCyclist) / oneCyclist.noOfRotations.Length; 
         }
     }
 }
