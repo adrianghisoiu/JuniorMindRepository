@@ -1,17 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+
 namespace PasswordGenerator
 {
     [TestClass]
     public class PasswordGenerator
     {
-        [TestMethod]
-        public void TestForSmallLetters()
-        {
-            Assert.AreEqual(6, CountLowerCaseLetters(GeneratePassword(6)));
-        }
-
         [TestMethod]
         public void TestForCountLowerCaseLetters()
         {
@@ -55,9 +50,18 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForExcludeAmbiguousCharacters()
         {
-           /* var actual = GeneratePassword(10, 2, 2, 4);
+          /* var actual = GeneratePassword(10, 2, 2, 4);
             char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
             Assert.AreEqual*/
+        }
+        
+    
+
+        [TestMethod]
+        public void TestForShufflePassword()
+        {
+            var actual = GeneratePassword(15, 2, 2, 2);
+            Assert.AreEqual(15, actual);
         }
 
         private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
@@ -69,8 +73,8 @@ namespace PasswordGenerator
                 + CharactersGenerator(upperNumber, rand, 'A', 'Z')
                 + CharactersGenerator(number, rand, '0', '9')
                 + GenerateSymbols(numberSymbols, rand, 0, symbols.Length, symbols);
-            
-            return myString;
+
+            return ShufflePassword(myString);
         }
 
         static string GenerateSymbols(int number, Random rand,int first, int second, char[] symbols )
@@ -148,6 +152,22 @@ namespace PasswordGenerator
                     contor++;
 
             return contor;
+        }
+
+        static string ShufflePassword(string myString)
+        {
+            Random rand = new Random();
+            char[] finalPassword = myString.ToCharArray();           
+            int contor = finalPassword.Length;
+            while (contor > 1)
+            {
+                contor--;
+                int k = rand.Next(contor + 1);
+                var value = finalPassword[k];
+                finalPassword[k] = finalPassword[contor];
+                finalPassword[contor] = value;
+            }
+            return new string(finalPassword);
         }
     }
 }
