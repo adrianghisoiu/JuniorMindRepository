@@ -13,6 +13,13 @@ namespace Cyclometter
             Assert.AreEqual(301.59, CalculateDistance(cyclist[0]), 1e-2);
         }
 
+        [TestMethod]
+        public void FindTotalDistance()
+        {
+            var cyclists = new Cyclist[] { new Cyclist("George", new int[] { 5, 6, 4, 1 }, 6), new Cyclist("Marian", new int[] { 1, 2, 1 }, 6) };
+            Assert.AreEqual(377, CalculateTotalDistance(cyclists), 1e-2);
+        }
+
         struct Cyclist
         {
             public string nameOfCyclist;
@@ -35,6 +42,15 @@ namespace Cyclometter
                 distance += circumference * oneCyclist.noOfRotations[i];
 
             return distance;
+        }
+
+        double CalculateTotalDistance(Cyclist[] cyclist)
+        {
+            double totalDistance = 0;
+            for (int i = 0; i < cyclist.Length; i++)
+                totalDistance += CalculateDistance(cyclist[i]);
+
+            return totalDistance;
         }
     }
 }
