@@ -27,6 +27,13 @@ namespace Cyclometter
             Assert.AreEqual(25.13, CalculateMeanSpeedForOneCyclist(cyclist[0]), 1e-2);
         }
 
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            var cyclists = new Cyclist[] { new Cyclist("George", new int[] { 1, 2, 1 }, 6), new Cyclist("Bogdan", new int[] { 2, 2, 1 }, 6) };
+            Assert.AreEqual(cyclists[1], CalculateMeanSpeed(cyclists));
+        }
+
         struct Cyclist
         {
             public string nameOfCyclist;
@@ -63,6 +70,19 @@ namespace Cyclometter
         double CalculateMeanSpeedForOneCyclist(Cyclist oneCyclist)
         {
             return CalculateDistance(oneCyclist) / oneCyclist.noOfRotations.Length; 
+        }
+
+        Cyclist CalculateMeanSpeed(Cyclist[] cyclist)
+        {
+            var firstCyclist = cyclist[0];
+            for (int i = 0; i < cyclist.Length; i++)
+            {
+                if (CalculateMeanSpeedForOneCyclist(firstCyclist) > CalculateMeanSpeedForOneCyclist(cyclist[i]))
+                    firstCyclist = firstCyclist;
+                else
+                    firstCyclist = cyclist[i];
+            }
+            return firstCyclist;
         }
     }
 }
