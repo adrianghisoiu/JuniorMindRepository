@@ -50,50 +50,42 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForExcludeAmbiguousCharacters()
         {
-          /* var actual = GeneratePassword(10, 2, 2, 4);
-            char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
-            Assert.AreEqual*/
+            char[] symbols = { 'a', 'b' };
+            char[] excluded = { 'a' };
+            Assert.AreEqual("bbb", GenerateSymbols(3, new Random(), symbols, excluded));
         }
         
-    
-
-        [TestMethod]
-        public void TestForShufflePassword()
-        {
-            var actual = GeneratePassword(15, 3, 3, 3);
-            Assert.AreEqual(15, actual.Length);
-            Assert.AreEqual("something", actual); //will fall, it's just to see if shuffle works
-        }
-
         private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
         {
             Random rand = new Random();
             char[] symbols = { '!', '"', '#', '$', '%', '&', '\'',  '(' , ')', '*' , '+', ',', '-', '.', '/', ':', ';',
             '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'};
+            char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
+
             string myString = CharactersGenerator(passwordLength - upperNumber - number - numberSymbols, rand, 'a', 'z')
                 + CharactersGenerator(upperNumber, rand, 'A', 'Z')
                 + CharactersGenerator(number, rand, '0', '9')
-                + GenerateSymbols(numberSymbols, rand, 0, symbols.Length, symbols);
+                + GenerateSymbols(numberSymbols, rand, symbols, ambiguousCharacters);
 
             return ShufflePassword(myString);
         }
 
-        static string GenerateSymbols(int number, Random rand,int first, int second, char[] symbols )
+        static string GenerateSymbols(int number, Random rand, char[] symbols, char[] excludedSymbols )
         {
             int c = 0;
-            char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
             string myString = null;
             for (int i = 0; i < number; i++)
             {
-                c = rand.Next(first, second);
-                while (Array.IndexOf(ambiguousCharacters, c) >= 0);
+                c = rand.Next(0, symbols.Length);
+                while (Array.IndexOf(excludedSymbols, symbols[c]) >= 0)
                 {
-                    c = rand.Next(first, second);
+                    c = rand.Next(0, symbols.Length);
                 }
                 myString += symbols[c].ToString();
             }
             return myString;
         }
+
         private static string CharactersGenerator(int number, Random rand, char first, char second)
         {
             char c = (char)0;
@@ -102,7 +94,7 @@ namespace PasswordGenerator
             for (int i = 0; i < number; i++)
             {
                 c = (char)(rand.Next(first, second + 1));
-                while(Array.IndexOf(similarCharacters, c) >= 0);
+                while(Array.IndexOf(similarCharacters, c) >= 0)
                 {
                     c = (char)(rand.Next(first, second + 1));
                 }
