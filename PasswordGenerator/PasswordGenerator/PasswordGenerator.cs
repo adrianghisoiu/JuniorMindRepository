@@ -42,9 +42,8 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForExcludeSimilarCharacters()
         {
-            /*var actual = GeneratePassword(10, 2, 2, 4);
-            char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
-            Assert.AreEqual*/
+            char[] excluded = { 'b' };
+            Assert.AreEqual("aaa", CharactersGenerator(3, new Random(), 'a', 'b', excluded));
         }
 
         [TestMethod]
@@ -61,10 +60,11 @@ namespace PasswordGenerator
             char[] symbols = { '!', '"', '#', '$', '%', '&', '\'',  '(' , ')', '*' , '+', ',', '-', '.', '/', ':', ';',
             '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'};
             char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
+            char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
 
-            string myString = CharactersGenerator(passwordLength - upperNumber - number - numberSymbols, rand, 'a', 'z')
-                + CharactersGenerator(upperNumber, rand, 'A', 'Z')
-                + CharactersGenerator(number, rand, '0', '9')
+            string myString = CharactersGenerator(passwordLength - upperNumber - number - numberSymbols, rand, 'a', 'z', similarCharacters)
+                + CharactersGenerator(upperNumber, rand, 'A', 'Z', similarCharacters)
+                + CharactersGenerator(number, rand, '0', '9', similarCharacters)
                 + GenerateSymbols(numberSymbols, rand, symbols, ambiguousCharacters);
 
             return ShufflePassword(myString);
@@ -86,15 +86,14 @@ namespace PasswordGenerator
             return myString;
         }
 
-        private static string CharactersGenerator(int number, Random rand, char first, char second)
+        private static string CharactersGenerator(int number, Random rand, char first, char second, char[] excludedCharacters)
         {
             char c = (char)0;
-            char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
             string myString = null;
             for (int i = 0; i < number; i++)
             {
                 c = (char)(rand.Next(first, second + 1));
-                while(Array.IndexOf(similarCharacters, c) >= 0)
+                while(Array.IndexOf(excludedCharacters, c) >= 0)
                 {
                     c = (char)(rand.Next(first, second + 1));
                 }
