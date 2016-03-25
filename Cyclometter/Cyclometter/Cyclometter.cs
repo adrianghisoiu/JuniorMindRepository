@@ -76,12 +76,8 @@ namespace Cyclometter
         {
             var firstCyclist = cyclist[0];
             for (int i = 0; i < cyclist.Length; i++)
-            {
-                if (CalculateMeanSpeedForOneCyclist(firstCyclist) > CalculateMeanSpeedForOneCyclist(cyclist[i]))
-                    firstCyclist = firstCyclist;
-                else
-                    firstCyclist = cyclist[i];
-            }
+                firstCyclist = CalculateMeanSpeedForOneCyclist(firstCyclist) > CalculateMeanSpeedForOneCyclist(cyclist[i]) ? firstCyclist : cyclist[i];
+
             return firstCyclist;
         }
     }
