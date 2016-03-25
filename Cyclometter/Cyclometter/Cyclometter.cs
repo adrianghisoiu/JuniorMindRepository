@@ -28,10 +28,18 @@ namespace Cyclometter
         }
 
         [TestMethod]
-        public void MyTestMethod()
+        public void TestForCalculateMeanSpeed()
         {
             var cyclists = new Cyclist[] { new Cyclist("George", new int[] { 1, 2, 1 }, 6), new Cyclist("Bogdan", new int[] { 2, 2, 1 }, 6) };
             Assert.AreEqual(cyclists[1], CalculateMeanSpeed(cyclists));
+        }
+
+        [TestMethod]
+        public void TestForCalculateMaximumSpeedPerSecond()
+        {
+            var cyclists = new Cyclist[] { new Cyclist("George", new int[] { 1, 3, 1 }, 6), new Cyclist("Bogdan", new int[] { 2, 2, 1 }, 6) };
+            var second = 2;
+            Assert.AreEqual("George", CalculateMaximumSpeedPerSecond(cyclists, out second));
         }
 
         struct Cyclist
@@ -79,6 +87,27 @@ namespace Cyclometter
                 firstCyclist = CalculateMeanSpeedForOneCyclist(firstCyclist) > CalculateMeanSpeedForOneCyclist(cyclist[i]) ? firstCyclist : cyclist[i];
 
             return firstCyclist;
+        }
+
+        string CalculateMaximumSpeedPerSecond(Cyclist[] cyclist, out int second)
+        {
+            double maxSpeed = 0;
+            double speed = 0;
+            string name = null;
+            second = 0;
+            for (int i = 0; i < cyclist.Length; i++)
+                for (int j = 0; j < cyclist[i].noOfRotations.Length; j++)
+                {
+                    speed = cyclist[i].noOfRotations[j] * Math.PI * cyclist[i].diameter;
+                    if (speed > maxSpeed)
+                    {
+                        maxSpeed = speed;
+                        name = cyclist[i].nameOfCyclist;
+                        second = j+1;
+                    }
+                }
+
+            return name;
         }
     }
 }
