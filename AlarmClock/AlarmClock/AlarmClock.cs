@@ -41,13 +41,16 @@ namespace AlarmClock
 
         bool FindIfTheAlarmIsOn(Alarm[] clockAlarm, Days day, int hour)
         {
+            bool alarm = false;
             for (int i = 0; i < clockAlarm.Length; i++)
-            {
-                if (((clockAlarm[i].day & day) != 0) && ((clockAlarm[i].hour & hour) != 0))
-                    return true;
-            }
+                alarm = (CheckConfig(clockAlarm, day, hour, i));
 
-            return false;
+            return alarm;
+        }
+
+        private static bool CheckConfig(Alarm[] clockAlarm, Days day, int hour, int i)
+        {
+            return ((clockAlarm[i].day & day) != 0) && ((clockAlarm[i].hour & hour) != 0);
         }
     }
 }
