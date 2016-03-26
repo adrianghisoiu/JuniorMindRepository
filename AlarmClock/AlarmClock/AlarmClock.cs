@@ -11,6 +11,7 @@ namespace AlarmClock
         {
             Alarm[] alarm = new Alarm[] { new Alarm( 5, Days.Monday | Days.Friday | Days.Saturday) };
             Assert.IsTrue(FindIfTheAlarmIsOn(alarm, Days.Monday, 5));
+            Assert.IsFalse(FindIfTheAlarmIsOn(alarm, Days.Wednesday, 20));
         }
 
 
