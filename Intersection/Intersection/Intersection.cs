@@ -19,8 +19,10 @@ namespace Intersection
         {
             var directions = new Directions[] { Directions.Up, Directions.Down, Directions.Left, Directions.Right };
             var secondDirections = new Directions[] { Directions.Up, Directions.Up };
-            Assert.AreEqual(true, FindIfCoordinatesIntersect(new Coordonates(2, 1), directions));
-            Assert.AreEqual(false, FindIfCoordinatesIntersect(new Coordonates(3, 1), secondDirections));
+            var coordonates = new Coordonates(2,2);
+            var secondCoordonates = new Coordonates(3, 3);
+            Assert.AreEqual(true, FindIfCoordinatesIntersect(new Coordonates(2, 1), directions, out coordonates));
+            Assert.AreEqual(false, FindIfCoordinatesIntersect(new Coordonates(3, 1), secondDirections, out secondCoordonates));
         }
 
         enum Directions
@@ -57,10 +59,10 @@ namespace Intersection
             return startCoordonates;
         }
 
-        bool FindIfCoordinatesIntersect(Coordonates startCoordonates, Directions[] directions)
+        bool FindIfCoordinatesIntersect(Coordonates startCoordonates, Directions[] directions, out Coordonates coordonates)
         {
             Coordonates[] newCoordonates = new Coordonates[directions.Length + 1];
-            Coordonates coordonates = new Coordonates();
+            coordonates = new Coordonates();
             for (int i = 0; i < directions.Length; i++)
             {
                 coordonates = CalculateNewCoordonates(directions[i], startCoordonates);
