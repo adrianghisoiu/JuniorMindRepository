@@ -42,42 +42,58 @@ namespace PasswordGenerator
         [TestMethod]
         public void TestForExcludeSimilarCharacters()
         {
-            char[] excluded = { 'b' };
+            string excluded = "b";
             Assert.AreEqual("aaa", CharactersGenerator(3, new Random(), 'a', 'b', excluded));
         }
 
         [TestMethod]
         public void TestForExcludeAmbiguousCharacters()
         {
-            char[] symbols = { 'a', 'b' };
-            char[] excluded = { 'a' };
+            string symbols = "ab";
+            string excluded = "a";
             Assert.AreEqual("bbb", GenerateSymbols(3, new Random(), symbols, excluded));
         }
         
-        private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0)
+        struct Options
+        {
+            bool ambiguousCharacters;
+            bool similarCharacters;
+
+            public Options(bool ambiguousCharacters, bool similarCharacters)
+            {
+                this.ambiguousCharacters = ambiguousCharacters;
+                this.similarCharacters = similarCharacters;
+            }
+        }
+
+        private static string GeneratePassword(int passwordLength, int upperNumber=0, int number = 0, int numberSymbols = 0, bool similarCharacters = true, bool ambiguousCharacters = true)
         {
             Random rand = new Random();
-            char[] symbols = { '!', '"', '#', '$', '%', '&', '\'',  '(' , ')', '*' , '+', ',', '-', '.', '/', ':', ';',
-            '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'};
-            char[] ambiguousCharacters = { '{', '}', '[', ']', '(', ')', '/', '\\', '\'', '"', '~', ',', ';', '.', '<', '>' };
-            char[] similarCharacters = { 'l', '1', 'I', 'o', '0', 'O' };
+            string symbols = "!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~}";
+            string ambiguous = null, similar = null;
+            
+            if(similarCharacters == true)
+                similar = "l, 1, I, o, 0, O";
+            string myString = CharactersGenerator(passwordLength - upperNumber - number - numberSymbols, rand, 'a', 'z', similar)
+                + CharactersGenerator(upperNumber, rand, 'A', 'Z', similar)
+                + CharactersGenerator(number, rand, '0', '9', similar);
 
-            string myString = CharactersGenerator(passwordLength - upperNumber - number - numberSymbols, rand, 'a', 'z', similarCharacters)
-                + CharactersGenerator(upperNumber, rand, 'A', 'Z', similarCharacters)
-                + CharactersGenerator(number, rand, '0', '9', similarCharacters)
-                + GenerateSymbols(numberSymbols, rand, symbols, ambiguousCharacters);
+            if (ambiguousCharacters == true)
+                ambiguous = "{}[]()/\'\"~,;.<>";
+            myString += GenerateSymbols(numberSymbols, rand, symbols, ambiguous);
 
             return ShufflePassword(myString);
         }
 
-        static string GenerateSymbols(int number, Random rand, char[] symbols, char[] excludedSymbols )
+        static string GenerateSymbols(int number, Random rand, string symbols, string excludedSymbols )
         {
             int c = 0;
             string myString = null;
+            char[] exclude = excludedSymbols.ToCharArray(0, excludedSymbols.Length);
             for (int i = 0; i < number; i++)
             {
                 c = rand.Next(0, symbols.Length);
-                while (Array.IndexOf(excludedSymbols, symbols[c]) >= 0)
+                while (Array.IndexOf(exclude, symbols[c]) >= 0)
                 {
                     c = rand.Next(0, symbols.Length);
                 }
@@ -86,14 +102,15 @@ namespace PasswordGenerator
             return myString;
         }
 
-        private static string CharactersGenerator(int number, Random rand, char first, char second, char[] excludedCharacters)
+        private static string CharactersGenerator(int number, Random rand, char first, char second, string excludedCharacters)
         {
             char c = (char)0;
             string myString = null;
+            char[] exclude = excludedCharacters.ToCharArray(0, excludedCharacters.Length);
             for (int i = 0; i < number; i++)
             {
                 c = (char)(rand.Next(first, second + 1));
-                while(Array.IndexOf(excludedCharacters, c) >= 0)
+                while(Array.IndexOf(exclude, c) >= 0)
                 {
                     c = (char)(rand.Next(first, second + 1));
                 }
