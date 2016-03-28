@@ -43,14 +43,14 @@ namespace AlarmClock
         {
             bool alarm = false;
             for (int i = 0; i < clockAlarm.Length; i++)
-                alarm = (CheckConfig(clockAlarm[i], day, hour));
+                alarm = (CheckConfig(clockAlarm, day, hour, i));
 
             return alarm;
         }
 
-        private static bool CheckConfig(Alarm clockAlarm, Days day, int hour)
+        private static bool CheckConfig(Alarm[] clockAlarm, Days day, int hour, int i)
         {
-            return ((clockAlarm.day & day) != 0) && ((clockAlarm.hour & hour) != 0);
+            return ((clockAlarm[i].day & day) != 0) && ((clockAlarm[i].hour & hour) != 0);
         }
     }
 }
