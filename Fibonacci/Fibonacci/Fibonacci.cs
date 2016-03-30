@@ -21,9 +21,7 @@ namespace Fibonacci
     
         int FindTheFibonacciNumber(int number)
         {
-            if (number < 2)
-                return number;
-            return FindTheFibonacciNumber(number - 1) + FindTheFibonacciNumber(number - 2);
+            return (number < 2) ? number : FindTheFibonacciNumber(number - 1) + FindTheFibonacciNumber(number - 2);
         }
     }
 }
