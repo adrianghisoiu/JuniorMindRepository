@@ -4,11 +4,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace StringInverter
 {
     [TestClass]
-    public class UnitTest1
+    public class StringInverter
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestForStringInverter()
         {
+            Assert.AreEqual("ieH", Reverse("Hei"));
+        }
+
+        string Reverse(string myString)
+        {
+            if (myString.Length > 0)
+                return myString[myString.Length - 1] + Reverse(myString.Substring(0, myString.Length - 1));
+            else
+                return myString;
         }
     }
 }
