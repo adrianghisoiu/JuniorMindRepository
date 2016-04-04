@@ -14,10 +14,7 @@ namespace StringInverter
 
         string Reverse(string myString)
         {
-            if (myString.Length > 0)
-                return myString[myString.Length - 1] + Reverse(myString.Substring(0, myString.Length - 1));
-            else
-                return myString;
+            return (myString.Length > 0) ? myString[myString.Length - 1] + Reverse(myString.Substring(0, myString.Length - 1)) : myString;
         }
     }
 }
