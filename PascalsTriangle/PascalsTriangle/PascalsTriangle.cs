@@ -10,11 +10,15 @@ namespace PascalsTriangle
         public void CalculatePascalTest()
         {
             CollectionAssert.AreEqual(new int[] { 1 }, CalculatePascal(1));
+            CollectionAssert.AreEqual(new int[] { 1, 1 }, CalculatePascal(2));
         }
 
         int[] CalculatePascal(int line)
         {
-            return new int[] { 1 };
+            int[] row = new int[line];
+            row[0] = 1;
+            row[line - 1] = 1;
+            return row;
         }
     }
 }
