@@ -26,10 +26,14 @@ namespace PascalsTriangle
             row[0] = 1;
             row[line - 1] = 1;
             final = CalculatePascal(line - 1);
-                for (int j = 1; j < line - 1; j++)
-                    row[j] = final[j - 1] + final[j];
-            
+            CalculatePascal(line, final, row);
             return row;
+        }
+
+        private static void CalculatePascal(int line, int[] final, int[] row)
+        {
+            for (int j = 1; j < line - 1; j++)
+                row[j] = final[j - 1] + final[j];
         }
     }
 }
