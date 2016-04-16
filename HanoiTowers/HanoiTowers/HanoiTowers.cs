@@ -7,7 +7,7 @@ namespace HanoiTowers
     public class HanoiTowers
     {
         [TestMethod]
-        public void TestMethod1()
+        public void MovingThreeDisks()
         {
             int[] source = new int[] { 4, 2, 1 };
             int[] destination = new int[source.Length];
