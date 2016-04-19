@@ -21,15 +21,20 @@ namespace HanoiTowers
             if (disk == 0)
             {
                 destination[disk] = source[disk];
-                Array.Resize(ref source, source.Length - 1);
+                Resize(source);
                 return destination;
             }
-            else
-                MoveTowers(disk - 1, source, auxiliar, destination);
-                destination[disk-1] = source[disk-1];
-                Array.Resize(ref source, source.Length - 1);
-                MoveTowers(disk - 1, auxiliar, destination, source);
+            MoveTowers(disk - 1, source, auxiliar, destination);
+            destination[disk-1] = source[disk-1];
+            Resize(source);
+            MoveTowers(disk - 1, auxiliar, destination, source);
             return destination;
+        }
+
+        private static int[] Resize(int[] source)
+        {
+            Array.Resize(ref source, source.Length - 1);
+            return source;
         }
     }
 }
