@@ -7,8 +7,9 @@ namespace Calculator
     public class Test
     {
         BasicCalculator instance = new BasicCalculator();
+
         [TestMethod]
-        public void FirstTest()
+        public void Sum()
         {
             var calculate = "+ 1 1";
             int param = 0;
@@ -48,14 +49,19 @@ namespace Calculator
             double result;
             string first = elements[param++];
 
-            if(double.TryParse(first, out result))
-            { 
+            if (double.TryParse(first, out result))
+            {
                 return result;
             }
 
+            return BasicOperations(firstString, ref param, first);
+        }
+
+        private double BasicOperations(string firstString, ref int param, string first)
+        {
             if (first == "+")
                 return Calculate(firstString, ref param) + Calculate(firstString, ref param);
-            if(first == "-")
+            if (first == "-")
                 return Calculate(firstString, ref param) - Calculate(firstString, ref param);
             if (first == "*")
                 return Calculate(firstString, ref param) * Calculate(firstString, ref param);
