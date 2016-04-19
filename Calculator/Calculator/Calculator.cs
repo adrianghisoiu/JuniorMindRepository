@@ -6,11 +6,11 @@ namespace Calculator
     [TestClass]
     public class Test
     {
+        BasicCalculator instance = new BasicCalculator();
         [TestMethod]
         public void FirstTest()
         {
             var calculate = "+ 1 1";
-            var instance = new BasicCalculator();
             int param = 0;
             Assert.AreEqual(2, instance.Calculate(calculate, ref param));
         }
@@ -22,13 +22,17 @@ namespace Calculator
         {
             string[] elements = firstString.Split(' ');
             double result;
+            string first = elements[param++];
 
-            if(double.TryParse(elements[param++], out result))
+            if(double.TryParse(first, out result))
             { 
                 return result;
             }
 
-            return Calculate(firstString, ref param) + Calculate(firstString, ref param);
+            if (first == "+")
+                return Calculate(firstString, ref param) + Calculate(firstString, ref param);
+            else
+                return 0;
         }
     }
 }
