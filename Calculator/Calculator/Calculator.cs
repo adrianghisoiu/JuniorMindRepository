@@ -14,6 +14,14 @@ namespace Calculator
             int param = 0;
             Assert.AreEqual(2, instance.Calculate(calculate, ref param));
         }
+
+        [TestMethod]
+        public void Substraction()
+        {
+            var calculate = "- 1 1";
+            int param = 0;
+            Assert.AreEqual(0, instance.Calculate(calculate, ref param));
+        }
     }
 
     public class BasicCalculator
@@ -31,6 +39,8 @@ namespace Calculator
 
             if (first == "+")
                 return Calculate(firstString, ref param) + Calculate(firstString, ref param);
+            if(first == "-")
+                return Calculate(firstString, ref param) - Calculate(firstString, ref param);
             else
                 return 0;
         }
