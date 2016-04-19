@@ -39,6 +39,14 @@ namespace Calculator
             int param = 0;
             Assert.AreEqual(2, instance.Calculate(calculate, ref param));
         }
+
+        [TestMethod]
+        public void Operations()
+        {
+            var calculate = "+ / * + 56 45 46 3 - 1 0.25";
+            int param = 0;
+            Assert.AreEqual(1549.41, instance.Calculate(calculate, ref param), 1e-2);
+        }
     }
 
     public class BasicCalculator
