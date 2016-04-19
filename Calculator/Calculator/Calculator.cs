@@ -30,6 +30,14 @@ namespace Calculator
             int param = 0;
             Assert.AreEqual(4, instance.Calculate(calculate, ref param));
         }
+
+        [TestMethod]
+        public void Division()
+        {
+            var calculate = "/ 4 2";
+            int param = 0;
+            Assert.AreEqual(2, instance.Calculate(calculate, ref param));
+        }
     }
 
     public class BasicCalculator
@@ -51,6 +59,8 @@ namespace Calculator
                 return Calculate(firstString, ref param) - Calculate(firstString, ref param);
             if (first == "*")
                 return Calculate(firstString, ref param) * Calculate(firstString, ref param);
+            if (first == "/")
+                return Calculate(firstString, ref param) / Calculate(firstString, ref param);
             else
                 return 0;
         }
