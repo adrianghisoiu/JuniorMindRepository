@@ -48,35 +48,4 @@ namespace Calculator
             Assert.AreEqual(1549.41, instance.Calculate(calculate, ref param), 1e-2);
         }
     }
-
-    public class BasicCalculator
-    {
-        public double Calculate(string firstString, ref int param)
-        {
-            string[] elements = firstString.Split(' ');
-            double result;
-            string first = elements[param++];
-
-            if (double.TryParse(first, out result))
-            {
-                return result;
-            }
-
-            return BasicOperations(firstString, ref param, first);
-        }
-
-        private double BasicOperations(string firstString, ref int param, string first)
-        {
-            if (first == "+")
-                return Calculate(firstString, ref param) + Calculate(firstString, ref param);
-            if (first == "-")
-                return Calculate(firstString, ref param) - Calculate(firstString, ref param);
-            if (first == "*")
-                return Calculate(firstString, ref param) * Calculate(firstString, ref param);
-            if (first == "/")
-                return Calculate(firstString, ref param) / Calculate(firstString, ref param);
-            else
-                return 0;
-        }
-    }
 }
