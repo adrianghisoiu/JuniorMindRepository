@@ -19,21 +19,19 @@ namespace Calculator
                 return result;
             }
 
-            return BasicOperations(firstString, ref param, first);
+            return BasicOperations(first, Calculate(firstString, ref param), Calculate(firstString, ref param));
         }
 
-        private double BasicOperations(string firstString, ref int param, string first)
+        private double BasicOperations(string expression, double first, double second)
         {
-            if (first == "+")
-                return Calculate(firstString, ref param) + Calculate(firstString, ref param);
-            if (first == "-")
-                return Calculate(firstString, ref param) - Calculate(firstString, ref param);
-            if (first == "*")
-                return Calculate(firstString, ref param) * Calculate(firstString, ref param);
-            if (first == "/")
-                return Calculate(firstString, ref param) / Calculate(firstString, ref param);
-            else
-                return 0;
+            switch(expression)
+            {
+                case "+": return first + second;
+                case "-": return first - second;
+                case "*": return first * second;
+                case "/": return first / second;
+                default: return 0;
+            }
         }
     }
 }
