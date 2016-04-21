@@ -16,21 +16,21 @@ namespace LottoExtraction
         {
             int[] generatedNumbers = new int[totalNumber];
             Random random = new Random();
-            for (int i = 0; i <= totalNumber; i++)
+            for (int i = 0; i < totalNumber; i++)
             {
                 generatedNumbers[i] = random.Next(1, 49);
-                generatedNumbers = InsertionSort(generatedNumbers);
+                generatedNumbers = InsertionSort(generatedNumbers, generatedNumbers[i]);
             }
 
             return generatedNumbers;
         }
 
-        int[] InsertionSort(int[] inputArray)
+        int[] InsertionSort(int[] inputArray, int lastNumber)
         {
-            for (int i = 1; i < inputArray.Length; i++)
-                if (inputArray[i - 1] > inputArray[i])
+            for (int i = inputArray.Length - 1; i > 0; i--)
+                if (lastNumber < inputArray[i-1])
                 {
-                    Swap(ref inputArray[i - 1], ref inputArray[i]);
+                    Swap(ref inputArray[i], ref inputArray[i - 1]);
                 }
             return inputArray;
         }
@@ -41,7 +41,7 @@ namespace LottoExtraction
             first = second;
             second = temp;
         }
-
+        
         bool AreSorted(int[] inputArray)
         {
             for (int i = 1; i < inputArray.Length; i++)
