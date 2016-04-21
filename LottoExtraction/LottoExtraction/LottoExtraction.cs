@@ -14,12 +14,12 @@ namespace LottoExtraction
 
         int[] GenerateNumbers(int totalNumber)
         {
-            int[] generatedNumbers = new int[totalNumber];
+            int[] generatedNumbers = new int[totalNumber+1];
             Random random = new Random();
-            for (int i = 0; i < totalNumber; i++)
+            for (int i = 1; i <= totalNumber; i++)
             {
                 generatedNumbers[i] = random.Next(1, 49);
-               generatedNumbers = InsertionSort(generatedNumbers);
+                generatedNumbers = InsertionSort(generatedNumbers);
             }
 
             return generatedNumbers;
@@ -27,22 +27,17 @@ namespace LottoExtraction
 
         int[] InsertionSort(int[] inputArray)
         {
-            for (int i = 0; i < inputArray.Length - 1; i++)
-            {
-                for (int j = i + 1; j > 0; j--)
+            for (int i = 1; i < inputArray.Length; i++)
+                if (inputArray[i - 1] > inputArray[i])
                 {
-                    if (inputArray[j - 1] > inputArray[j])
-                    {
-                        Swap(ref inputArray[j-1], ref inputArray[j]);
-                    }
+                    Swap(ref inputArray[i - 1], ref inputArray[i]);
                 }
-            }
             return inputArray;
         }
 
         private static void Swap(ref int first, ref int second)
         {
-            int temp =first;
+            int temp = first;
             first = second;
             second = temp;
         }
