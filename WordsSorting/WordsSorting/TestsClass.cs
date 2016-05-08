@@ -4,11 +4,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace WordsSorting
 {
     [TestClass]
-    public class UnitTest1
+    public class TestsClass
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestForOccurance()
         {
+            var occurance = new Words(new string[] { "One", "two", "three", "three", "four" });
+            Assert.AreEqual(2, occurance.GetOcurrances("three"));
         }
     }
 }
