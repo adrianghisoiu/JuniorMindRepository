@@ -1,30 +1,30 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace WordsSorting
 {
-    class Words
+    class Words : IEnumerable<Word>
     {
-        private string[] inputString;
 
-        public Words(string[] inputString)
+        public void Add(string[] words)
         {
-            this.inputString = inputString;
+            Array.Resize(ref words, words.Length+1);
+           // words[words.Length - 1] = GetEnumerator();
         }
 
-        public int GetOcurrances(string wordToFind)
+        public IEnumerator<Word> GetEnumerator()
         {
-            int count = 0;
-            for (int i = 0; i < inputString.Length; i++)
-                if (wordToFind == inputString[i]) count++;
-
-            return count;
+            return GetEnumerator();
         }
 
-
-  
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }

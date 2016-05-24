@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace WordsSorting
 {
     class SortingWords
     {
-        public string[] InsertionSort(string[] inputString)
+      /*  public string[] InsertionSort(string[] inputString)
         {
             var word = new Words(inputString);
             for (int i = inputString.Length - 1; i > 0; i--)
@@ -36,6 +37,6 @@ namespace WordsSorting
             string temp = first;
             first = second;
             second = temp;
-        }
+        }*/
     }
 }
