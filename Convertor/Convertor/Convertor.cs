@@ -192,11 +192,6 @@ namespace Convertor
             return number;
         }
 
-        /*private byte AndLogic(byte first, byte second)
-        {
-            return (byte)(first * second);
-        }*/
-
         int CountZero(byte[] number)
         {
             int count = 0;
@@ -211,13 +206,13 @@ namespace Convertor
 
         byte[] Or(byte[] firstNumber, byte[] secondNumber)
         {
-            return ExecuteLogicalOperation(firstNumber, secondNumber, OrLogic);
+            return ExecuteLogicalOperation(firstNumber, secondNumber, (a,b) => (a == 1 || b == 1 ? (byte)1 : (byte)0));
         }
 
-        private byte OrLogic(byte first, byte second)
+       /* private byte OrLogic(byte first, byte second)
         {
             return first == 1 || second == 1 ? (byte)1 : (byte)0;
-        }
+        }*/
 
         byte[] Xor(byte[] firstNumber, byte[] secondNumber)
         {
