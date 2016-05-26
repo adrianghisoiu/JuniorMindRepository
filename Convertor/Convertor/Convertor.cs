@@ -175,7 +175,7 @@ namespace Convertor
 
         byte[] And(byte[] firstNumber, byte[] secondNumber)
         {
-            return ExecuteLogicalOperation(firstNumber, secondNumber, AndLogic);
+            return ExecuteLogicalOperation(firstNumber, secondNumber, (a,b) => (byte)(a * b));
         }
 
         private byte[] ExecuteLogicalOperation(byte[] firstNumber, byte[] secondNumber, LogicalOperator operation)
@@ -192,10 +192,10 @@ namespace Convertor
             return number;
         }
 
-        private byte AndLogic(byte first, byte second)
+        /*private byte AndLogic(byte first, byte second)
         {
             return (byte)(first * second);
-        }
+        }*/
 
         int CountZero(byte[] number)
         {
