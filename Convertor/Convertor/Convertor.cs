@@ -211,12 +211,7 @@ namespace Convertor
 
         byte[] Xor(byte[] firstNumber, byte[] secondNumber)
         {
-            return ExecuteLogicalOperation(firstNumber, secondNumber, XorLogic);
-        }
-
-        private byte XorLogic(byte first, byte second)
-        {
-            return first == second ? (byte)0 : (byte)1;
+            return ExecuteLogicalOperation(firstNumber, secondNumber, (a,b) => (a == b ? (byte)0 : (byte)1));
         }
 
         byte[] RightHandShift(byte[] number, int position)
