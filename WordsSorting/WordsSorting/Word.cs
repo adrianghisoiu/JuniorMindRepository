@@ -18,9 +18,9 @@ namespace WordsSorting
             this.count = count;
         }
 
-        public string WordToReturn()
+        public int CompareTo(Word wordSecond)
         {
-            return word + count;
+            return 0;
         }
     }
 }
