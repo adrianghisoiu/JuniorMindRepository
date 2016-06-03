@@ -20,7 +20,7 @@ namespace WordsSorting
 
         public int CompareTo(Word wordSecond)
         {
-            return word.CompareTo(wordSecond);
+            return word.CompareTo(wordSecond.word);
         }
     }
 }
