@@ -11,7 +11,7 @@ namespace WordsSorting
     {
         private string word;
         private int count;
-
+        
         public Word(string word, int count)
         {
             this.word = word;
@@ -26,6 +26,11 @@ namespace WordsSorting
         public int CompareToByCount(Word wordSecond)
         {
             return count.CompareTo(wordSecond.count);
+        }
+
+        internal void IncrementWord()
+        {
+            count++;
         }
     }
 }

@@ -26,5 +26,15 @@ namespace WordsSorting
             var wordSecond = new Word("b", b);
             Assert.Equal(expected, wordFirst.CompareToByCount(wordSecond));
         }
+
+        [Theory]
+        [InlineData(1, 2, 0)]
+        public void IncrementCountOfWord(int a, int b, int expected)
+        {
+            var wordFirst = new Word("a", a);
+            wordFirst.IncrementWord();
+            var wordSecond = new Word("b", b);
+            Assert.Equal(expected, wordFirst.CompareToByCount(wordSecond));
+        }
     }
 }
