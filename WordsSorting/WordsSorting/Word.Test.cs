@@ -15,5 +15,14 @@ namespace WordsSorting
             var wordSecond = new Word(b, 1);
             Assert.Equal(expected, wordFirst.CompareTo(wordSecond));
         }
+
+        [Theory]
+        [InlineData(1, 1, 0)]
+        public void CompareByCount(int a, int b, int expected)
+        {
+            var wordFirst = new Word("a", a);
+            var wordSecond = new Word("b", b);
+            Assert.Equal(expected, wordFirst.CompareToByCount(wordSecond));
+        }
     }
 }

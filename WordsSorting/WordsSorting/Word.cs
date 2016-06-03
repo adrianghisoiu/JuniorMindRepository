@@ -22,5 +22,10 @@ namespace WordsSorting
         {
             return word.CompareTo(wordSecond.word);
         }
+
+        public int CompareToByCount(Word wordSecond)
+        {
+            return 0;
+        }
     }
 }
