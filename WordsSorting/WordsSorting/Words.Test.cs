@@ -18,14 +18,14 @@ namespace WordsSorting
         [Fact]
         public void AddTwoWords()
         {
-            var expected = "a a";
+            var expected = "a a b";
             Words words = new Words();
             string[] final = expected.Split(' ');
             foreach (string w in final)
             {
                 words.Add(w);
             }
-            Assert.Equal(new[] { new Word("a", 2)}, words);
+            Assert.Equal(new[] { new Word("a", 2), new Word("b", 1)}, words);
         }
     }
 }
