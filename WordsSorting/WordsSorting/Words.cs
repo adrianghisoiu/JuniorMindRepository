@@ -18,9 +18,18 @@ namespace WordsSorting
         }
 
         public void Add(string word)
-        {         
-            Array.Resize(ref words, words.Length + 1);
-            words[words.Length - 1] = new Word(word, 1);     
+        {
+            if (words.Length == 0)
+            {
+                Array.Resize(ref words, words.Length + 1);
+                words[words.Length - 1] = new Word(word, 1);
+            }
+            else
+            for (int i = 0; i < words.Length; i++)
+                {
+                    if (words[i].CompareTo(new Word(word, 1)) == 0);
+                    words[i].IncrementWord();
+            }
         }
 
         public IEnumerator<Word> GetEnumerator()

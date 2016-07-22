@@ -6,14 +6,26 @@ namespace WordsSorting
 {
     public class WordsTest
     {
-       [Fact]
-       public void AddWord()
-       {
+        [Fact]
+        public void AddWord()
+        {
             var expected = "a";
             Words words = new Words();
             words.Add(expected);
             Assert.Equal(new[] { new Word(expected, 1) }, words);
+        }
 
-       }
+        [Fact]
+        public void AddTwoWords()
+        {
+            var expected = "a a";
+            Words words = new Words();
+            string[] final = expected.Split(' ');
+            foreach (string w in final)
+            {
+                words.Add(w);
+            }
+            Assert.Equal(new[] { new Word("a", 2)}, words);
+        }
     }
 }
