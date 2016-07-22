@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,20 @@ namespace WordsSorting
         internal void IncrementWord()
         {
             count++;
+        }
+
+         public override string ToString()
+        {
+            return word + count;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Word secondWord = obj as Word;
+            if (secondWord == null)            
+                return false;
+           
+            return (word == secondWord.word) && (count == secondWord.count);
         }
     }
 }

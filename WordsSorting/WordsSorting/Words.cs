@@ -10,22 +10,29 @@ namespace WordsSorting
 {
     class Words : IEnumerable<Word>
     {
-        private Word[] addWord;
-        public void Add(string[] words)
+        private Word[] words;
+
+        public Words()
         {
-           /* addWord = new Word[words.Length];
-            Array.Resize(ref words, words.Length+1);
-            words[words.Length - 1] = GetEnumerator();*/
+            this.words = new Word[0];
+        }
+
+        public void Add(string word)
+        {         
+            Array.Resize(ref words, words.Length + 1);
+            words[words.Length - 1] = new Word(word, 1);     
         }
 
         public IEnumerator<Word> GetEnumerator()
         {
-            return GetEnumerator();
+            foreach (var word in words)
+                yield return word;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
+
     }
 }
