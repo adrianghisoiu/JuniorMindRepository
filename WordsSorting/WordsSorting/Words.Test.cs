@@ -27,5 +27,18 @@ namespace WordsSorting
             }
             Assert.Equal(new[] { new Word("a", 2), new Word("b", 1)}, words);
         }
+
+        [Fact]
+        public void AddMoreWords()
+        {
+            var expected = "a b c c c c b b";
+            Words words = new Words();
+            string[] final = expected.Split(' ');
+            foreach (string w in final)
+            {
+                words.Add(w);
+            }
+            Assert.Equal(new[] { new Word("c", 4), new Word("b", 3), new Word("a", 1) }, words);
+        }
     }
 }

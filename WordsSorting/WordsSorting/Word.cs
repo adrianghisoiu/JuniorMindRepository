@@ -47,5 +47,22 @@ namespace WordsSorting
            
             return (word == secondWord.word) && (count == secondWord.count);
         }
+
+        public Word[] InsertionSort(Word[] inputString)
+        {
+            for (int i = 0; i < inputString.Length - 1; i++)
+            {
+                for (int j = i + 1; j > 0; j--)
+                {
+                    if (inputString[j - 1].count < inputString[j].count)
+                    {
+                        Word temp = inputString[j - 1];
+                        inputString[j - 1] = inputString[j];
+                        inputString[j] = temp;
+                    }
+                }
+            }
+            return inputString;
+        }
     }
 }
