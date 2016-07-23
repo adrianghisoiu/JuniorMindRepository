@@ -69,7 +69,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SortingWords.cs" />
+    <Compile Include="SortedWords.cs" />
     <Compile Include="Word.cs" />
     <Compile Include="Word.Test.cs" />
     <Compile Include="Words.cs" />
@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="SortingWords.Test.cs" />
+    <Compile Include="SortedWords.Test.cs" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

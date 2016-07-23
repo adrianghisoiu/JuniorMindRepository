@@ -31,14 +31,14 @@ namespace WordsSorting
         [Fact]
         public void AddMoreWords()
         {
-            var expected = "a b c c c c b b";
+            var expected = "a b c c b b";
             Words words = new Words();
             string[] final = expected.Split(' ');
             foreach (string w in final)
             {
                 words.Add(w);
             }
-            Assert.Equal(new[] { new Word("c", 4), new Word("b", 3), new Word("a", 1) }, words);
+            Assert.Equal(new[] { new Word("b", 3), new Word("c", 2), new Word("a", 1) }, words);
         }
     }
 }
