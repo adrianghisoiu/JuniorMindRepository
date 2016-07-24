@@ -32,7 +32,6 @@ namespace WordsSorting
             Array.Resize(ref words, words.Length + 1);
             words[words.Length - 1] = new Word(word, 1);
 
-          
             words = sortedWords.InsertionSort(words);
         }
 

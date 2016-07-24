@@ -11,8 +11,7 @@ namespace WordsSorting
    class SortedWords : IEnumerable<Word>
     {
         private IEnumerable<Word> words;
-        private int count { get; set; }
-
+        
         public SortedWords(IEnumerable<Word> words)
         {
             this.words = words;
@@ -25,7 +24,7 @@ namespace WordsSorting
             {
                 for (int j = i + 1; j > 0; j--)
                 {
-                    if (words[j - 1].count < words[j].count)
+                    if (words[j - 1].CompareToByCount(words[j]) == -1)
                     {
                         Word temp = words[j - 1];
                         words[j - 1] = words[j];
@@ -39,8 +38,6 @@ namespace WordsSorting
         public IEnumerator<Word> GetEnumerator()
         {
             throw new NotImplementedException();
-            // foreach (var count in words)
-            //   yield return count;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
