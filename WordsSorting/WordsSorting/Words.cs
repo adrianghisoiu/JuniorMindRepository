@@ -17,7 +17,7 @@ namespace WordsSorting
             this.words = new Word[0];
         }
 
-        public void Add(string word)
+        public void Add(string word, string option)
         {
             var sortedWords = new SortedWords(words);
             for (int i = 0; i < words.Length; i++)
@@ -25,14 +25,14 @@ namespace WordsSorting
                 if (words[i].CompareTo(new Word(word, 1)) == 0)
                 {
                     words[i].IncrementWord();
-                    words = sortedWords.InsertionSort(words);
+                    words = sortedWords.InsertionSort(words, option);
                     return;
                 }
             }
             Array.Resize(ref words, words.Length + 1);
             words[words.Length - 1] = new Word(word, 1);
 
-            words = sortedWords.InsertionSort(words);
+            words = sortedWords.InsertionSort(words, option);
         }
 
         public IEnumerator<Word> GetEnumerator()

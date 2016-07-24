@@ -11,7 +11,7 @@ namespace WordsSorting
     class Word
     {
         private string word;
-        public int count;
+        private int count;
         
         public Word(string word, int count)
         {
