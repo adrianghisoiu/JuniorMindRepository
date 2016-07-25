@@ -11,13 +11,15 @@ namespace WordsSorting
    class SortedWords : IEnumerable<Word>
     {
         private IEnumerable<Word> words;
+        private string option;
         
-        public SortedWords(IEnumerable<Word> words)
+        public SortedWords(IEnumerable<Word> words, string option)
         {
             this.words = words;
+            this.option = option;
         }
 
-        public Word[] InsertionSort(Word[] words, string option)
+        private Word[] InsertionSort(Word[] words)
         {
             for (int i = 0; i < words.Length - 1; i++)
             {
@@ -62,7 +64,7 @@ namespace WordsSorting
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
-   }
+    }
 }

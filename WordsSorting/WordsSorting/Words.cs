@@ -17,23 +17,19 @@ namespace WordsSorting
             this.words = new Word[0];
         }
 
-        public void Add(string word, string option)
+        public void Add(string word)
         {
-            var sortedWords = new SortedWords(words);
             for (int i = 0; i < words.Length; i++)
             {
                 if (words[i].CompareTo(new Word(word, 1)) == 0)
                 {
                     words[i].IncrementWord();
-                    words = sortedWords.InsertionSort(words, option);
-                    return;
+                     return;
                 }
             }
             Array.Resize(ref words, words.Length + 1);
             words[words.Length - 1] = new Word(word, 1);
-
-            words = sortedWords.InsertionSort(words, option);
-        }
+     }
 
         public IEnumerator<Word> GetEnumerator()
         {
