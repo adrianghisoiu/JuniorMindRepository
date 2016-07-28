@@ -19,7 +19,7 @@ namespace WordsSorting
         {
             Words words = new Words { "b", "b", "a" };
             var sortedWords = new SortedWords(words, "word");
-            Assert.Equal(new[] { new Word("a", 1), new Word( "b", 2) }, words);
+            Assert.Equal(new[] { new Word("a", 1), new Word( "b", 2) }, sortedWords);
         }
     }
 }

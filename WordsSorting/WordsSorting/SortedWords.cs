@@ -10,47 +10,46 @@ namespace WordsSorting
 {
    class SortedWords : IEnumerable<Word>
     {
-        private IEnumerable<Word> words;
+        private Word[] words;
         private string option;
-        
+
         public SortedWords(IEnumerable<Word> words, string option)
         {
-            this.words = words;
+            this.words = words.ToArray();
             this.option = option;
         }
 
-        private Word[] InsertionSort(Word[] words)
+        public void InsertionSort()
         {
             for (int i = 0; i < words.Length - 1; i++)
             {
                 for (int j = i + 1; j > 0; j--)
                 {
                     if (option.ToLower() == "count")
-                        CompareByCount(words, j);                    
+                        CompareByCount(j);                    
                     else if(option.ToLower() == "word")
-                        CompareByWords(words, j);
+                        CompareByWords(j);
                 }
             }
-            return words;
         }
 
-        private static void CompareByWords(Word[] words, int j)
+        private void CompareByWords(int j)
         {
             if (words[j - 1].CompareTo(words[j]) == 1)
             {
-                Swap(words, j);
+                Swap(j);
             }
         }
 
-        private static void CompareByCount(Word[] words, int j)
+        private void CompareByCount(int j)
         {
             if (words[j - 1].CompareToByCount(words[j]) == -1)
             {
-                Swap(words, j);
+                Swap(j);
             }
         }
 
-        private static void Swap(Word[] words, int j)
+        private void Swap(int j)
         {
             Word temp = words[j - 1];
             words[j - 1] = words[j];
@@ -59,8 +58,11 @@ namespace WordsSorting
 
         public IEnumerator<Word> GetEnumerator()
         {
-            throw new NotImplementedException();
+            InsertionSort();
+              foreach (var w in words)
+                yield return w;
         }
+
 
         IEnumerator IEnumerable.GetEnumerator()
         {
