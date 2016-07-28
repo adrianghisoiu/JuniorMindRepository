@@ -26,7 +26,7 @@ namespace WordsSorting
 
         public int CompareToByCount(Word wordSecond)
         {
-            return count.CompareTo(wordSecond.count);
+            return -1 * count.CompareTo(wordSecond.count);
         }
 
         internal void IncrementWord()

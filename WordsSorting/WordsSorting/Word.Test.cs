@@ -18,8 +18,8 @@ namespace WordsSorting
 
         [Theory]
         [InlineData(1, 1, 0)]
-        [InlineData(1, 2, -1)]
-        [InlineData(2, 1, 1)]
+        [InlineData(1, 2, 1)]
+        [InlineData(2, 1, -1)]
         public void CompareByCount(int a, int b, int expected)
         {
             var wordFirst = new Word("a", a);
