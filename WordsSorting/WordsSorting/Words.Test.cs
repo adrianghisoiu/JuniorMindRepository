@@ -16,17 +16,15 @@ namespace WordsSorting
         [Fact]
         public void AddTwoWords()
         {
-            Words words = new Words { "b", "a", "a" };
-            var sortedWords = new SortedWords(words, (a, b) => a.CompareToByCount(b));
-            Assert.Equal(new[] { new Word("a", 2), new Word("b", 1)}, sortedWords);
+            var words = new SortedWords(new Words { "b", "a", "a" }, (a, b) => a.CompareToByCount(b));
+            Assert.Equal(new[] { new Word("a", 2), new Word("b", 1)}, words);
         }
 
         [Fact]
         public void AddMoreWords()
         {
-            Words words = new Words() { "a", "b", "c", "c", "b", "b" };
-            var sortedWords = new SortedWords(words, (a,b)=> a.CompareToByCount(b));
-            Assert.Equal(new[] { new Word("b", 3), new Word("c", 2), new Word("a", 1) }, sortedWords);
+            var words = new SortedWords(new Words { "a", "b", "c", "c", "b", "b" }, (a, b) => a.CompareToByCount(b));
+            Assert.Equal(new[] { new Word("b", 3), new Word("c", 2), new Word("a", 1) }, words);
         }
     }
 }
