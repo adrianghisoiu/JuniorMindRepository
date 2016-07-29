@@ -14,5 +14,15 @@ namespace List
             firstList.Add("c");
             Assert.AreEqual(2, firstList.Count);
         }
+
+        [TestMethod]
+        public void TestForClear()
+        {
+            var firstList = new List<string>();
+            firstList.Add("a");
+            firstList.Add("b");
+            firstList.Clear();
+            Assert.AreEqual(0, firstList.Count);
+        }
     }
 }
