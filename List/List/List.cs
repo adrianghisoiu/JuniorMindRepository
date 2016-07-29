@@ -16,12 +16,12 @@ namespace List
         {
             get
             {
-                throw new NotImplementedException();
+                return listObject[index]; 
             }
 
             set
             {
-                throw new NotImplementedException();
+                listObject[index] = value;
             }
         }
 
@@ -63,7 +63,12 @@ namespace List
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            int j = arrayIndex;
+            for(int i = 0; i < count; i++)
+            {
+                array.SetValue(listObject[i],j);
+                j++;
+            }
         }
 
         public IEnumerator<T> GetEnumerator()
