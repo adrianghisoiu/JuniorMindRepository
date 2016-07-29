@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+
 namespace List
 {
     [TestClass]
@@ -23,6 +24,14 @@ namespace List
             firstList.Add("b");
             firstList.Clear();
             Assert.AreEqual(0, firstList.Count);
+        }
+
+        [TestMethod]
+        public void TestForAdd()
+        {
+            var firstList = new List<string>();
+            firstList.Add("a");
+            Assert.IsTrue(firstList.Contains("a"));
         }
     }
 }

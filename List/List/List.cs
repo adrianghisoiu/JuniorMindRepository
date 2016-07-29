@@ -43,6 +43,8 @@ namespace List
 
         public void Add(T item)
         {
+            Array.Resize(ref listObject, listObject.Length + 1);
+            listObject[count] = item;
             count++;
         }
 
@@ -53,7 +55,10 @@ namespace List
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < count; i++) 
+                if (listObject[i].Equals(item))
+                    return true;
+                return false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
