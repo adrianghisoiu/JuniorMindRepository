@@ -40,5 +40,12 @@ namespace List
             firstList.CopyTo(moveHere, 1);
             Assert.Equal(new string[] { "c", "a", "b" }, moveHere);
         }
+
+        [Fact]
+        public void TestForIndexOf()
+        {
+            var firstList = new List<string> { "a", "b" };
+            Assert.Equal(1, firstList.IndexOf("b"));
+        }
     }
 }

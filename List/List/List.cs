@@ -78,7 +78,16 @@ namespace List
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            int index = 0;
+            for(int i = 0; i < count; i++)
+            {
+                if(listObject[i].Equals(item))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
         }
 
         public void Insert(int index, T item)
