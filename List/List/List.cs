@@ -73,7 +73,8 @@ namespace List
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < count; i++)
+                yield return listObject[i];
         }
 
         public int IndexOf(T item)
@@ -102,12 +103,19 @@ namespace List
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if(index>=0 && index < count)
+            {
+                for (int i = index; i < count - 1; i++)
+                {
+                    listObject[i] = listObject[i + 1];
+                }
+                count--;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }

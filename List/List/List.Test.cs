@@ -47,5 +47,13 @@ namespace List
             var firstList = new List<string> { "a", "b" };
             Assert.Equal(1, firstList.IndexOf("b"));
         }
+
+        [Fact]
+        public void TestForRemoveAt()
+        {
+            var firstList = new List<string> { "a", "b" };
+            firstList.RemoveAt(1);
+            Assert.Equal(new[] { "a" }, firstList);
+        }
     }
 }
