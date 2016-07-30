@@ -55,5 +55,13 @@ namespace List
             firstList.RemoveAt(1);
             Assert.Equal(new[] { "a" }, firstList);
         }
+
+        [Fact]
+        public void TestForRemove()
+        {
+            var firstList = new List<string> { "a", "b" };
+            firstList.Remove("a");
+            Assert.False(firstList.Contains("a"));
+        }
     }
 }
