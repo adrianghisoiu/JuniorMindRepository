@@ -43,9 +43,14 @@ namespace List
 
         public void Add(T item)
         {
-            Array.Resize(ref listObject, listObject.Length + 1);
+            ResizeOfList();
             listObject[count] = item;
             count++;
+        }
+
+        private void ResizeOfList()
+        {
+            Array.Resize(ref listObject, listObject.Length + 1);
         }
 
         public void Clear()
@@ -93,7 +98,7 @@ namespace List
 
         public void Insert(int index, T item)
         {
-            Array.Resize(ref listObject, listObject.Length + 1);
+            ResizeOfList();
             for (int i = listObject.Length - 1; i > index; i--)
             {
                 listObject[i] = listObject[i - 1];
