@@ -93,7 +93,13 @@ namespace List
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            Array.Resize(ref listObject, listObject.Length + 1);
+            for (int i = listObject.Length - 1; i > index; i--)
+            {
+                listObject[i] = listObject[i - 1];
+            }
+            listObject[index] = item;
+            count++;
         }
 
         public bool Remove(T item)

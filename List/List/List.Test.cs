@@ -63,5 +63,13 @@ namespace List
             firstList.Remove("a");
             Assert.False(firstList.Contains("a"));
         }
+
+        [Fact] 
+        public void TestForInsert()
+        {
+            var firstList = new List<string> { "a", "b" };
+            firstList.Insert(1, "c");
+            Assert.Equal(new[] { "a", "c", "b" }, firstList);
+        }
     }
 }
