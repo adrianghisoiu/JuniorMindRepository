@@ -109,12 +109,11 @@ namespace List
 
         public bool Remove(T item)
         {
-            for (int i = 0; i < count; i++)
-                if (listObject[i].Equals(item))
-                {
-                    RemoveAt(IndexOf(item));
-                    return true;
-                }
+            if(Contains(item))
+            {
+                RemoveAt(IndexOf(item));
+                return true;
+            }
             return false;
         }
 
