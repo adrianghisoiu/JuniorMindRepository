@@ -60,8 +60,8 @@ namespace List
         public void TestForRemove()
         {
             var firstList = new List<string> { "a", "b" };
-            firstList.Remove("a");
-            Assert.False(firstList.Contains("a"));
+            Assert.True(firstList.Remove("a"));
+            Assert.False(firstList.Remove("c"));
         }
 
         [Fact] 
