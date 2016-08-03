@@ -9,7 +9,7 @@ namespace List
 {
     class List<T> : IList<T>
     {
-        T[] listObject = new T[0];
+        T[] listObject = new T[1];
         int count = 0;
 
         public T this[int index]
@@ -50,7 +50,8 @@ namespace List
 
         private void ResizeOfList()
         {
-            Array.Resize(ref listObject, listObject.Length + 1);
+            if (listObject.Length - 1 == count)
+                Array.Resize(ref listObject, listObject.Length * 2);
         }
 
         public void Clear()
