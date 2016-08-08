@@ -120,14 +120,14 @@ namespace List
 
         public void RemoveAt(int index)
         {
-            if(index>=0 && index < count)
-            {
-                for (int i = index; i < count - 1; i++)
+                if (index < listObject.Length)
                 {
-                    listObject[i] = listObject[i + 1];
+                    for (int i = index; i < count - 1; i++)
+                    {
+                        listObject[i] = listObject[i + 1];
+                    }
+                    count--;
                 }
-                count--;
-            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

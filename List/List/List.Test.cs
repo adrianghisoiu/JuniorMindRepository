@@ -53,6 +53,8 @@ namespace List
         {
             var firstList = new List<string> { "a", "b" };
             firstList.RemoveAt(1);
+            firstList.RemoveAt(100);
+            Assert.Equal(new[] { "a" }, firstList);
             Assert.Equal(new[] { "a" }, firstList);
         }
 
