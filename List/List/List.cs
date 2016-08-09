@@ -69,7 +69,7 @@ namespace List
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            if (array == null)
+            if (array.Length == 0)
                 throw new ArgumentNullException();
 
             ArgumentRangeException(arrayIndex);

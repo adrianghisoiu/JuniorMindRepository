@@ -83,20 +83,19 @@ namespace List
         public void TestForCopyToExceptions()
         {
             var first = new string[] { "a", "b" };
-            var second = new string[0];
+            var second = (string[])null;
             var third = new string[] { "a", "c" };
 
            //ArgumentNullException is not working
-           //Assert.Throws<ArgumentNullException>(() => first.CopyTo(second, 0)); 
+            Assert.Throws<ArgumentNullException>(() => third.CopyTo(second, 0)); 
             Assert.Throws<ArgumentOutOfRangeException>(() => first.CopyTo(third, -1));
-            Assert.Throws<ArgumentException>(() => first.CopyTo(second, 1));
+            Assert.Throws<ArgumentException>(() => first.CopyTo(third, 3));
         }
 
         [Fact]
         public void TestForInserException()
         {
             var firstList = new List<string> { "a", "b" };
-
             Assert.Throws<ArgumentOutOfRangeException>(() => firstList.Insert(5, "c"));
         }
     }
