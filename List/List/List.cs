@@ -120,9 +120,12 @@ namespace List
 
         public void RemoveAt(int index)
         {
-                if (index < listObject.Length)
-                {
-                    for (int i = index; i < count - 1; i++)
+            if (index < 0 || index >= count)
+                throw new ArgumentOutOfRangeException();
+
+            if (index < listObject.Length)
+            {
+                for (int i = index; i < count - 1; i++)
                     {
                         listObject[i] = listObject[i + 1];
                     }
