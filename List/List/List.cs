@@ -69,6 +69,8 @@ namespace List
 
         public void CopyTo(T[] array, int arrayIndex)
         {
+            if (array == null)
+                throw new ArgumentNullException();
             int j = arrayIndex;
             for(int i = 0; i < count; i++)
             {

@@ -53,8 +53,6 @@ namespace List
         {
             var firstList = new List<string> { "a", "b" };
             firstList.RemoveAt(1);
-            firstList.RemoveAt(100);
-            Assert.Equal(new[] { "a" }, firstList);
             Assert.Equal(new[] { "a" }, firstList);
         }
 
@@ -72,6 +70,22 @@ namespace List
             var firstList = new List<string> { "a", "b" };
             firstList.Insert(1, "c");
             Assert.Equal(new[] { "a", "c", "b" }, firstList);
+        }
+
+        [Fact]
+        public void TestForArgumentOutOfRange()
+        {
+            var firstList = new List<string> { "a", "b" };
+            Assert.Throws<ArgumentOutOfRangeException>(() => firstList.RemoveAt(100));
+        }
+
+        [Fact]
+        public void TestForCopyToExceptions()
+        {
+            var firstList = new List<string> { "a", "b" };
+            var moveHere = new string[0];
+
+            Assert.Throws<ArgumentNullException>(() => firstList.CopyTo(moveHere, 0));
         }
     }
 }
