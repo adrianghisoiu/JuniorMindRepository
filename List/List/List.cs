@@ -71,7 +71,12 @@ namespace List
         {
             if (array == null)
                 throw new ArgumentNullException();
+
             ArgumentRangeException(arrayIndex);
+
+            if (array.Length > count - arrayIndex)
+                throw new ArgumentException();
+
             int j = arrayIndex;
             for(int i = 0; i < count; i++)
             {
