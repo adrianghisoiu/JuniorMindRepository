@@ -71,6 +71,7 @@ namespace List
         {
             if (array == null)
                 throw new ArgumentNullException();
+            ArgumentRangeException(arrayIndex);
             int j = arrayIndex;
             for(int i = 0; i < count; i++)
             {
@@ -122,22 +123,28 @@ namespace List
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= count)
-                throw new ArgumentOutOfRangeException();
+            ArgumentRangeException(index);
 
             if (index < listObject.Length)
             {
                 for (int i = index; i < count - 1; i++)
-                    {
-                        listObject[i] = listObject[i + 1];
-                    }
-                    count--;
+                {
+                    listObject[i] = listObject[i + 1];
                 }
+                count--;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
+
+        private void ArgumentRangeException(int index)
+        {
+            if (index < 0 || index >= count)
+                throw new ArgumentOutOfRangeException();
+        }
+
     }
 }

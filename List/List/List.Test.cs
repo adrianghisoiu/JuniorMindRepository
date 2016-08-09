@@ -85,7 +85,8 @@ namespace List
             var firstList = new List<string> { "a", "b" };
             var moveHere = new string[0];
 
-            Assert.Throws<ArgumentNullException>(() => firstList.CopyTo(moveHere, 0));
+            Assert.Throws<ArgumentNullException>(() => firstList.CopyTo(moveHere, 0)); 
+            Assert.Throws<ArgumentOutOfRangeException>(() => firstList.CopyTo(moveHere, 10));
         }
     }
 }
