@@ -107,6 +107,7 @@ namespace List
 
         public void Insert(int index, T item)
         {
+            ArgumentRangeException(index);
             ResizeOfList();
             for (int i = listObject.Length - 1; i > index; i--)
             {

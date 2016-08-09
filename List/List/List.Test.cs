@@ -91,5 +91,13 @@ namespace List
             Assert.Throws<ArgumentOutOfRangeException>(() => first.CopyTo(third, -1));
             Assert.Throws<ArgumentException>(() => first.CopyTo(second, 1));
         }
+
+        [Fact]
+        public void TestForInserException()
+        {
+            var firstList = new List<string> { "a", "b" };
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => firstList.Insert(5, "c"));
+        }
     }
 }
