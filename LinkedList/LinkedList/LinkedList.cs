@@ -19,13 +19,25 @@ namespace LinkedList
             head.Previous = head;
             this.count = 0;
         }
-
+   
         public void AddFirstItem(T item)
         {
             head = new Node<T>(item);
-          /*  head.Next = head;
-            head.Previous = head;
-     */   }
+        }
+
+        public void AddLast(T item)
+        {
+            if (head == null)
+                this.AddFirstItem(item);
+            else
+            {
+                Node<T> newNode = new Node<T>(item);
+                head.Next = newNode;
+                newNode.Previous = head;
+                newNode.Next = head.Previous;
+            }
+             ++count;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {
