@@ -6,8 +6,11 @@ namespace LinkedList
     public class LinkedListTest
     {
         [Fact]
-        public void TestMethod1()
+        public void TestForAddFirst()
         {
+            var linkedList = new LinkedList<string> { };
+            linkedList.AddFirstItem("a");
+            Assert.Equal(new[] { "a" }, linkedList);
         }
     }
 }
