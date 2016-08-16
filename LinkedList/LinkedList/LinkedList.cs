@@ -74,9 +74,19 @@ namespace LinkedList
                 }
                 current = current.Next;
             }
-
         }
 
+        public bool Find(Node<T> node)
+        {
+            Node<T> current = head.Next;
+            while (!current.Equals(head))
+            {
+                if (current.Equals(node))
+                    return true;
+                current = current.Next;
+            }
+            return false;
+        }
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;

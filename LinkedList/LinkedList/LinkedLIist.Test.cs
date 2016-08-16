@@ -51,9 +51,18 @@ namespace LinkedList
         public void TestForRemoveAt()
         {
             Node<string> toRemove = new Node<string>("b");
+            Node<string> toRemove2 = new Node<string>("d");
             var linkedList = new LinkedList<string> { "a", "b", "c" };
             linkedList.RemoveNode(toRemove);
             Assert.Equal(new[] { "a", "c" }, linkedList);
+        }
+
+        [Fact]
+        public void TestForFind()
+        {
+            Node<string> toFind = new Node<string>("b");
+            var linkedList = new LinkedList<string> { "a", "b", "c" };
+            Assert.True(linkedList.Find(toFind));
         }
     }
 }
