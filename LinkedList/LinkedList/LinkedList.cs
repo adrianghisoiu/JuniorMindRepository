@@ -37,6 +37,17 @@ namespace LinkedList
             count++;
         }
 
+        public void AddFirst(T item)
+        {
+            Node<T> newNode = new Node<T>(item);
+
+            newNode.Next = head.Next;
+            newNode.Previous = head;
+            head.Next = newNode;
+            head.Previous.Previous = newNode;
+            count++;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;
