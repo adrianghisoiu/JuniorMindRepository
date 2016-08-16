@@ -54,6 +54,12 @@ namespace LinkedList
             head.Previous.Next = head;
         }
 
+        public void RemoveFirst()
+        {
+            head.Next = head.Next.Next;
+            head.Next.Previous = head;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;
