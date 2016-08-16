@@ -64,5 +64,12 @@ namespace LinkedList
             var linkedList = new LinkedList<string> { "a", "b", "c" };
             Assert.True(linkedList.Find(toFind));
         }
+
+        [Fact]
+        public void TestForLastNode()
+        {
+            var linkedList = new LinkedList<string> { "a", "b", "c" };
+            Assert.Equal("c", linkedList.LastNode().Data);
+        }
     }
 }

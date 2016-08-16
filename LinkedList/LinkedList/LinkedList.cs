@@ -44,7 +44,7 @@ namespace LinkedList
             newNode.Next = head.Next;
             newNode.Previous = head;
             head.Next = newNode;
-            head.Previous.Previous = newNode;
+            head.Next.Previous = newNode;
             count++;
         }
 
@@ -87,15 +87,22 @@ namespace LinkedList
             }
             return false;
         }
+
+        public Node<T> LastNode()
+        {
+            return head.Previous;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;
-            while (node!=head)
+            while (node != head)
             {
                 yield return node.Data;
-                node = node.Next;                   
+                node = node.Next;
             }
         }
+
 
         IEnumerator IEnumerable.GetEnumerator()
         {
