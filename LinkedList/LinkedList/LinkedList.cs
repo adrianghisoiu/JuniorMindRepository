@@ -50,6 +50,7 @@ namespace LinkedList
 
         public void RemoveLast()
         {
+            InvalidExceptionForRemove();
             head.Previous = head.Previous.Previous;
             head.Previous.Next = head;
             count--;
@@ -57,9 +58,16 @@ namespace LinkedList
 
         public void RemoveFirst()
         {
+            InvalidExceptionForRemove();
             head.Next = head.Next.Next;
             head.Next.Previous = head;
             count--;
+        }
+
+        private void InvalidExceptionForRemove()
+        {
+            if (head.Next == head)
+                throw new InvalidOperationException();
         }
 
         public void RemoveNode(Node<T> node)

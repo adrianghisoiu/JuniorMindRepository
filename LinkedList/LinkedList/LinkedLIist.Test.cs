@@ -77,5 +77,13 @@ namespace LinkedList
             var linkedList = new LinkedList<string> { "a", "b", "c" };
             Assert.Equal("a", linkedList.FirstNode().Data);
         }
+
+        [Fact]
+        public void TestForInvalidOperationException()
+        {
+            var linkedList = new LinkedList<string>();
+            Assert.Throws<InvalidOperationException>(() => linkedList.RemoveFirst());
+            Assert.Throws<InvalidOperationException>(() => linkedList.RemoveLast());
+        }
     }
 }
