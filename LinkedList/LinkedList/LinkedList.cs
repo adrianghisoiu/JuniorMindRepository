@@ -93,6 +93,11 @@ namespace LinkedList
             return head.Previous;
         }
 
+        public Node<T> FirstNode()
+        {
+            return head.Next;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;

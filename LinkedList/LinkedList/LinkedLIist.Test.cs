@@ -51,7 +51,6 @@ namespace LinkedList
         public void TestForRemoveAt()
         {
             Node<string> toRemove = new Node<string>("b");
-            Node<string> toRemove2 = new Node<string>("d");
             var linkedList = new LinkedList<string> { "a", "b", "c" };
             linkedList.RemoveNode(toRemove);
             Assert.Equal(new[] { "a", "c" }, linkedList);
@@ -70,6 +69,13 @@ namespace LinkedList
         {
             var linkedList = new LinkedList<string> { "a", "b", "c" };
             Assert.Equal("c", linkedList.LastNode().Data);
+        }
+
+        [Fact]
+        public void TestForFirstNode()
+        {
+            var linkedList = new LinkedList<string> { "a", "b", "c" };
+            Assert.Equal("a", linkedList.FirstNode().Data);
         }
     }
 }
