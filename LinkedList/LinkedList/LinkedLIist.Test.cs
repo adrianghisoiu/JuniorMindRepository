@@ -30,5 +30,13 @@ namespace LinkedList
             linkedList.AddFirst("b");
             Assert.Equal(new[] { "b", "a" }, linkedList);
         }
+
+        [Fact]
+        public void TestForRemoveLast()
+        {
+            var linkedtList = new LinkedList<string> { "a", "b"};
+            linkedtList.RemoveLast();
+            Assert.Equal(new[] { "a" }, linkedtList);
+        }
     }
 }

@@ -48,6 +48,12 @@ namespace LinkedList
             count++;
         }
 
+        public void RemoveLast()
+        {
+            head.Previous = head.Previous.Previous;
+            head.Previous.Next = head;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;
