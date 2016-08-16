@@ -34,5 +34,11 @@ namespace LinkedList
             get { return this.data; }
             set { this.data = value; }
         }
+
+        public override bool Equals(object obj)
+        {
+            Node<T> secondNode = obj as Node<T>;
+            return (Data.Equals(secondNode.Data));
+         }
     }
 }

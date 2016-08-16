@@ -52,12 +52,29 @@ namespace LinkedList
         {
             head.Previous = head.Previous.Previous;
             head.Previous.Next = head;
+            count--;
         }
 
         public void RemoveFirst()
         {
             head.Next = head.Next.Next;
             head.Next.Previous = head;
+            count--;
+        }
+
+        public void RemoveNode(Node<T> node)
+        {
+            Node<T> current = head.Next;
+            while(current!=head)
+            {
+                if(current.Equals(node))
+                {
+                    current.Next.Previous = current.Previous;
+                    current.Previous.Next = current.Next;
+                }
+                current = current.Next;
+            }
+
         }
 
         public IEnumerator<T> GetEnumerator()
