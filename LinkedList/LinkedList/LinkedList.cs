@@ -28,6 +28,8 @@ namespace LinkedList
 
         public void AddLast(T item)
         {
+            ExceptionForNullNode(item);
+
             Node<T> newNode = new Node<T>(item);
 
             newNode.Next = head;
@@ -39,6 +41,8 @@ namespace LinkedList
 
         public void AddFirst(T item)
         {
+            ExceptionForNullNode(item);
+
             Node<T> newNode = new Node<T>(item);
 
             newNode.Next = head.Next;
@@ -62,12 +66,6 @@ namespace LinkedList
             head.Next = head.Next.Next;
             head.Next.Previous = head;
             count--;
-        }
-
-        private void InvalidExceptionForRemove()
-        {
-            if (head.Next == head)
-                throw new InvalidOperationException();
         }
 
         public void RemoveNode(Node<T> node)
@@ -105,7 +103,7 @@ namespace LinkedList
         {
             return head.Next;
         }
-
+        
         public IEnumerator<T> GetEnumerator()
         {
             var node = head.Next;
@@ -116,10 +114,33 @@ namespace LinkedList
             }
         }
 
+        public IEnumerator<T> GetReverseEnumerator()
+        {
+            var node = head.Previous;
+            while(node != head)
+            {
+                yield return node.Data;
+                node = node.Previous;
+            }
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+
+        //exceptions
+        private void InvalidExceptionForRemove()
+        {
+            if (head.Next == head)
+                throw new InvalidOperationException();
+        }
+
+        private void ExceptionForNullNode(T item)
+        {
+            if (item == null)
+                throw new ArgumentNullException();
         }
     }
 }

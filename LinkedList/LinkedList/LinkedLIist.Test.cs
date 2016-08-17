@@ -85,5 +85,14 @@ namespace LinkedList
             Assert.Throws<InvalidOperationException>(() => linkedList.RemoveFirst());
             Assert.Throws<InvalidOperationException>(() => linkedList.RemoveLast());
         }
+
+        [Fact]
+        public void TestForArgumentNullException()
+        {
+            var linkedList = new LinkedList<string> { "a" };
+            Assert.Throws<ArgumentNullException>(() => linkedList.AddLast(null));
+            Assert.Throws<ArgumentNullException>(() => linkedList.AddFirst(null));
+            Assert.Throws<ArgumentNullException>(() => linkedList.Add(null));
+        }
     }
 }
